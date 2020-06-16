@@ -1,0 +1,77 @@
+/***** Start keyframe Section From Left To right animation *****/
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/*****   End keyframe Section From Left To right animation   *****/
+
+/*****  Start keyframe Section From Right To Left animation  *****/
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform:translateX(-2rem) ;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/*****   End keyframe Section From Left To Right animation   *****/
+
+/*****   Start keyframe Section From Bottom To Top animation   *****/
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform:translateY(-2rem) ;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/*****   Start keyframe Section From Bottom To Top animation   *****/
+
+@keyframes slideIn {
+    from {
+
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes Appears {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1.2;
+    }
+}

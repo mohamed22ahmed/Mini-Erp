@@ -15,13 +15,13 @@ class ColorController extends Controller
     }
 
     function getdata(){
-        $branches = Color::all();
+        $colors = Color::all();
         if(request()->ajax()){
-            return Datatables::of($branches)
-            ->addColumn('action', function($branch){
-                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
-                    <a href="#" class="btn btn-xl btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
+            return Datatables::of($colors)
+            ->addColumn('action', function($color){
+                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$color->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$color->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a href="#" class="btn btn-xl btn-'.($color->is_active ?"success":"danger").' active" id="'.$color->id.'"><i class="glyphicon glyphicon-active"></i> '.($color->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
         }
@@ -45,25 +45,40 @@ class ColorController extends Controller
         {
             if($request->get('button_action') == 'insert')
             {
-                $x=new Color;
-                $x->name=$request->name;
-                if($request->notes)
-                    $x->notes=$request->notes;
+                $testName=Color::where('name',$request->name)->first();
+                if(!$testName){
+                    $color=new Color;
+                    $color->name=$request->name;
+                    if($request->notes)
+                        $color->notes=$request->notes;
 
-                $x->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                    $color->save();
+                    $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                }
+                else
+                    array_push($error_array,'Data Exist');
             }
 
             if($request->get('button_action') == 'update')
             {
-                $student = Color::find($request->get('student_id'));
-                $student->name = $request->name;
-                if($request->notes)
-                    $student->notes = $request->notes;
-                $student->save();
-                $success_output = '<div class="alert alert-success">Data Updated</div>';
+                $color = Color::find($request->get('student_id'));
+                $isChanged = false;
+                if($color->name!=$request->name){
+                    $testName=Color::where('name',$request->name)->first();
+                    if($testName){
+                        array_push($error_array,'Data Exist');
+                        $isChanged = true;
+                    }
+                }
+                if(!$isChanged)
+                {
+                    $color->name = $request->name;
+                    if($request->notes)
+                        $color->notes = $request->notes;
+                    $color->save();
+                    $success_output = '<div class="alert alert-success">Data Updated</div>';
+                }
             }
-
         }
 
         $output = array(
@@ -74,31 +89,31 @@ class ColorController extends Controller
     }
 
     function fetchdata(Request $request){
-        $id = $request->input('id');
-        $student = Color::find($id);
+        $id = $request->id;
+        $color = Color::find($id);
         // dd($id);
         $output = array(
-            'name'     =>  $student->name,
-            'notes'     =>  $student->notes
+            'name'     =>  $color->name,
+            'notes'     =>  $color->notes
         );
         echo json_encode($output);
     }
 
     function removedata(Request $request){
-        $student = Color::find($request->input('id'));
-        if($student->delete())
+        $color = Color::find($request->input('id'));
+        if($color->delete())
         {
             echo 'Data Deleted';
         }
     }
 
     function active(Request $request){
-        $student = Color::find($request->input('id'));
-        if($student->is_active==1)
-            $student->is_active=0;
+        $color = Color::find($request->input('id'));
+        if($color->is_active==1)
+            $color->is_active=0;
         else
-            $student->is_active=1;
+            $color->is_active=1;
 
-        $student->save();
+        $color->save();
     }
 }

@@ -11,7 +11,7 @@
         <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
         <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
         <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-        <title>Income Outcome</title>
+        <title>Expenses and revenues</title>
         <meta charset="utf-8">
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,9 @@
 
     </head>
     <body>
+        @if(Session('lang')=='ar')
+            {{ App::setLocale('ar') }}
+        @endif
         <header class="app-header"><a class="app-header__logo" href="index.html">Test</a>
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <ul class="app-nav">
@@ -88,7 +91,7 @@
                 </ul>
             </li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.users')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
                 <li><a class="treeview-item" href="/dashboard/clients"><i class="icon fa fa-circle-o"></i>Clients</a></li>
@@ -106,16 +109,18 @@
                         <div class="pt-md-5 mt-md-3">
                     @endif
                             <div class="text-center mb-5" ></div>
+                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.in_out_page')</h3></div>
+
                             <div align="right">
-                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_category')</button>
+                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_in_out')</button>
                             </div>
                             <br />
                             <table id="student_table" class="table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Notes</th>
-                                        <th>Action</th>
+                                        <th>@lang('dashboard.name')</th>
+                                        <th>@lang('dashboard.notes')</th>
+                                        <th>@lang('dashboard.action')</th>
                                     </tr>
                                 </thead>
                             </table>

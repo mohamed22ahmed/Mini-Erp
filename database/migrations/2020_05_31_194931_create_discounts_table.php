@@ -17,7 +17,7 @@ class CreateDiscountsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('notes')->nullable();
-            $table->integer('is_active')->default(0);
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }

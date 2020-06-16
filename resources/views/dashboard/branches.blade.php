@@ -11,7 +11,7 @@
         <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
         <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
         <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-        <title>@yield('title')</title>
+        <title>Branches</title>
         <meta charset="utf-8">
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,9 @@
 
     </head>
     <body>
+        @if(Session('lang')=='ar')
+            {{ App::setLocale('ar') }}
+        @endif
         <header class="app-header"><a class="app-header__logo" href="index.html">Test</a>
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <ul class="app-nav">
@@ -88,10 +91,11 @@
                 </ul>
             </li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.users')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
-                <li><a class="treeview-item" href="/dashboard/clients"><i class="icon fa fa-circle-o"></i>Clients</a></li>
+                <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Company Information</a></li>
+
             </ul>
             </li>
             </ul>
@@ -106,6 +110,7 @@
                         <div class="pt-md-5 mt-md-3">
                     @endif
                             <div class="text-center mb-5" ></div>
+                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.branch_page')</h3></div>
                             <div align="right">
                                 <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_branch')</button>
                             </div>
@@ -113,12 +118,12 @@
                             <table id="student_table" class="table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Admin</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
+                                        <th>@lang('dashboard.admin')</th>
+                                        <th>@lang('dashboard.name')</th>
+                                        <th>@lang('dashboard.address')</th>
+                                        <th>@lang('dashboard.phone')</th>
+                                        <th>@lang('dashboard.email')</th>
+                                        <th>@lang('dashboard.action')</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -135,8 +140,12 @@
                                                 {{csrf_field()}}
                                                 <span id="form_output"></span>
                                                 <div class="form-group">
-                                                    <label>Enter Admin</label>
-                                                    <input type="text" name="admin_id" id="admin_id" class="form-control" />
+                                                    <label>Select Admin</label>
+                                                    <select name="admin_id" id="admin_id">
+                                                        <option value="">ahmed</option>
+                                                        <option value="">ali</option>
+                                                        <option value="">mohamed</option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Enter Name</label>
@@ -152,7 +161,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Enter Email</label>
-                                                    <input type="text" name="email" id="email" class="form-control" />
+                                                    <input type="email" name="email" id="email" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -249,6 +258,7 @@
                             $('#address').val(data.address);
                             $('#phone').val(data.phone);
                             $('#email').val(data.email);
+
                             $('#student_id').val(id);
                             $('#studentModal').modal('show');
                             $('#action').val('Edit');
@@ -278,12 +288,23 @@
                         return false;
                     }
                 });
+                $(document).on('click', '.active', function(){
+                    var id = $(this).attr('id');
 
-
+                    $.ajax({
+                        url:"{{route('branches.active')}}",
+                        mehtod:"get",
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            $('#student_table').DataTable().ajax.reload();
+                        }
+                    })
+                });
             });
         </script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
     </body>
 </html>

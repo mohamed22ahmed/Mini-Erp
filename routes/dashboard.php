@@ -5,6 +5,12 @@ Route::prefix('dashboard')->group(function(){
 
     Route::get('login','DashboardController@login');
     Route::post('login','DashboardController@loggedin');
+    Route::get('forget','DashboardController@forget');
+    Route::post('forget','DashboardController@forget_send');
+    Route::get('code','DashboardController@code');
+    Route::post('code','DashboardController@code_check');
+    Route::get('reset_pass','DashboardController@reset_page');
+    Route::post('reset_pass','DashboardController@reset');
 
     Route::get('/','DashboardController@index');
 
@@ -66,8 +72,17 @@ Route::prefix('dashboard')->group(function(){
     Route::get('discounts/active', 'DiscountController@active')->name('discounts.active');
 
 
+
+
+//-------------------------------------- Administrator Routes -----------------------------------------------
     // Admin Routes
     Route::resource('admins','AdminController');
+
+    //compnay info Routes
+    Route::resource('company', 'CompanyController');
+
+
+
 
 
 });

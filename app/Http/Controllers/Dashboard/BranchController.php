@@ -30,11 +30,7 @@ class BranchController extends Controller
 
     function postdata(Request $request){
         $validation = Validator::make($request->all(), [
-            'admin_id' => 'required',
             'name'  => 'required',
-            'address'  => 'required',
-            'phone'  => 'required',
-            'email'  => 'required',
         ]);
 
         $error_array = array();
@@ -50,29 +46,40 @@ class BranchController extends Controller
         {
             if($request->get('button_action') == 'insert')
             {
-                $student = new Branch([
-                    'admin_id'    =>  $request->admin_id,
-                    'name'     =>  $request->name,
-                    'address'     =>  $request->address,
-                    'phone'     =>  $request->phone,
-                    'email'     =>  $request->email
-                ]);
-                $student->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                $testName=Branch::where('name',$request->name)->first();
+                if(!$testName){
+                    $branch=new Branch;
+                    $branch->name=$request->name;
+                    if($request->notes)
+                        $branch->notes=$request->notes;
+
+                    $branch->save();
+                    $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                }
+                else
+                    array_push($error_array,'Data Exist');
             }
 
             if($request->get('button_action') == 'update')
             {
-                $student = Branch::find($request->get('student_id'));
-                $student->admin_id = $request->admin_id;
-                $student->name = $request->name;
-                $student->address = $request->address;
-                $student->phone = $request->phone;
-                $student->email = $request->email;
-                $student->save();
-                $success_output = '<div class="alert alert-success">Data Updated</div>';
+                $branch = Branch::find($request->get('student_id'));
+                $isChanged = false;
+                if($branch->name!=$request->name){
+                    $testName=Branch::where('name',$request->name)->first();
+                    if($testName){
+                        array_push($error_array,'Data Exist');
+                        $isChanged = true;
+                    }
+                }
+                if(!$isChanged)
+                {
+                    $branch->name = $request->name;
+                    if($request->notes)
+                        $branch->notes = $request->notes;
+                    $branch->save();
+                    $success_output = '<div class="alert alert-success">Data Updated</div>';
+                }
             }
-
         }
 
         $output = array(
@@ -112,7 +119,7 @@ class BranchController extends Controller
     }
 
     function active(Request $request){
-        $student = Branch::find($request->input('id'));
+        $student = Branch::find($request->id);
         if($student->is_active==1)
             $student->is_active=0;
         else

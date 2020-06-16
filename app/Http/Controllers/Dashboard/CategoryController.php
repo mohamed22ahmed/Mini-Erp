@@ -16,13 +16,13 @@ class CategoryController extends Controller
     }
 
     function getdata(){
-        $branches = Category::all();
+        $categories = Category::all();
         if(request()->ajax()){
-            return Datatables::of($branches)
-            ->addColumn('action', function($branch){
-                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
-                    <a href="#" class="btn btn-xl btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
+            return Datatables::of($categories)
+            ->addColumn('action', function($category){
+                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$category->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$category->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a href="#" class="btn btn-xl btn-'.($category->is_active ?"success":"danger").' active" id="'.$category->id.'"><i class="glyphicon glyphicon-active"></i> '.($category->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
         }
@@ -35,40 +35,47 @@ class CategoryController extends Controller
 
         $error_array = array();
         $success_output = '';
-        if ($validation->fails())
-        {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages)
-            {
+        if ($validation->fails()){
+            foreach ($validation->messages()->getMessages() as $field_name => $messages){
                 $error_array[] = $messages;
             }
         }
-        else
-        {
-            if($request->get('button_action') == 'insert')
-            {
-                $x=new Category;
-                $x->name=$request->name;
-                if($request->parent_id)
-                    $x->parent_id=$request->parent_id;
-                if($request->notes)
-                    $x->notes=$request->notes;
+        else{
+            if($request->get('button_action') == 'insert'){
+                $testName=Category::where('name',$request->name)->first();
+                if(!$testName){
+                    $category=new Category;
+                    $category->name=$request->name;
+                    if($request->notes)
+                        $category->notes=$request->notes;
 
-                $x->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                    $category->save();
+                    $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                }
+                else
+                    array_push($error_array,'Data Exist');
             }
 
             if($request->get('button_action') == 'update')
             {
-                $student = Category::find($request->get('student_id'));
-                $student->name = $request->name;
-                if($request->parent_id)
-                    $student->parent_id = $request->parent_id;
-                if($request->notes)
-                    $student->notes = $request->notes;
-                $student->save();
-                $success_output = '<div class="alert alert-success">Data Updated</div>';
+                $category = Category::find($request->get('student_id'));
+                $isChanged = false;
+                if($category->name!=$request->name){
+                    $testName=Category::where('name',$request->name)->first();
+                    if($testName){
+                        array_push($error_array,'Data Exist');
+                        $isChanged = true;
+                    }
+                }
+                if(!$isChanged)
+                {
+                    $category->name = $request->name;
+                    if($request->notes)
+                        $category->notes = $request->notes;
+                    $category->save();
+                    $success_output = '<div class="alert alert-success">Data Updated</div>';
+                }
             }
-
         }
 
         $output = array(
@@ -79,32 +86,32 @@ class CategoryController extends Controller
     }
 
     function fetchdata(Request $request){
-        $id = $request->input('id');
-        $student = Category::find($id);
+        $id = $request->id;
+        $category = Category::find($id);
         // dd($id);
         $output = array(
-            'name'     =>  $student->name,
-            'parent_id'     =>  $student->parent_id,
-            'notes'     =>  $student->notes
+            'name'     =>  $category->name,
+            'parent_id'     =>  $category->parent_id,
+            'notes'     =>  $category->notes
         );
         echo json_encode($output);
     }
 
     function removedata(Request $request){
-        $student = Category::find($request->input('id'));
-        if($student->delete())
+        $category = Category::find($request->input('id'));
+        if($category->delete())
         {
             echo 'Data Deleted';
         }
     }
 
     function active(Request $request){
-        $student = Category::find($request->input('id'));
-        if($student->is_active==1)
-            $student->is_active=0;
+        $category = Category::find($request->id);
+        if($category->is_active==1)
+            $category->is_active=0;
         else
-            $student->is_active=1;
+            $category->is_active=1;
 
-        $student->save();
+        $category->save();
     }
 }

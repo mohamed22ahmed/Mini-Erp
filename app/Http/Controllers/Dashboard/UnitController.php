@@ -15,13 +15,13 @@ class UnitController extends Controller
     }
 
     function getdata(){
-        $branches = Unit::all();
+        $units = Unit::all();
         if(request()->ajax()){
-            return Datatables::of($branches)
-            ->addColumn('action', function($branch){
-                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
-                    <a href="#" class="btn btn-xl btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
+            return Datatables::of($units)
+            ->addColumn('action', function($unit){
+                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$unit->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$unit->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a href="#" class="btn btn-xl btn-'.($unit->is_active ?"success":"danger").' active" id="'.$unit->id.'"><i class="glyphicon glyphicon-active"></i> '.($unit->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
         }
@@ -47,25 +47,23 @@ class UnitController extends Controller
             {
                 $testName=Unit::where('name',$request->name)->first();
                 if(!$testName){
-                $x=new Unit;
-                $x->name=$request->name;
-                if($request->notes)
-                    $x->notes=$request->notes;
+                    $unit=new Unit;
+                    $unit->name=$request->name;
+                    if($request->notes)
+                        $unit->notes=$request->notes;
 
-                $x->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                    $unit->save();
+                    $success_output = '<div class="alert alert-success">Data Inserted</div>';
                 }
                 else
-                array_push($error_array,'Data Exist');
-
+                    array_push($error_array,'Data Exist');
             }
 
             if($request->get('button_action') == 'update')
             {
-
-                $student = Unit::find($request->get('student_id'));
+                $unit = Unit::find($request->get('student_id'));
                 $isChanged = false;
-                if($student->name!=$request->name){
+                if($unit->name!=$request->name){
                     $testName=Unit::where('name',$request->name)->first();
                     if($testName){
                         array_push($error_array,'Data Exist');
@@ -74,15 +72,15 @@ class UnitController extends Controller
                 }
                 if(!$isChanged)
                 {
-                    $student->name = $request->name;
+                    $unit->name = $request->name;
                     if($request->notes)
-                        $student->notes = $request->notes;
-                    $student->save();
+                        $unit->notes = $request->notes;
+                    $unit->save();
                     $success_output = '<div class="alert alert-success">Data Updated</div>';
                 }
             }
-
         }
+
         $output = array(
             'error'     =>  $error_array,
             'success'   =>  $success_output
@@ -91,31 +89,31 @@ class UnitController extends Controller
     }
 
     function fetchdata(Request $request){
-        $id = $request->input('id');
-        $student = Unit::find($id);
+        $id = $request->id;
+        $unit = Unit::find($id);
         // dd($id);
         $output = array(
-            'name'     =>  $student->name,
-            'notes'     =>  $student->notes
+            'name'     =>  $unit->name,
+            'notes'     =>  $unit->notes
         );
         echo json_encode($output);
     }
 
     function removedata(Request $request){
-        $student = Unit::find($request->input('id'));
-        if($student->delete())
+        $unit = Unit::find($request->id);
+        if($unit->delete())
         {
             echo 'Data Deleted';
         }
     }
 
     function active(Request $request){
-        $student = Unit::find($request->input('id'));
-        if($student->is_active==1)
-            $student->is_active=0;
+        $unit = Unit::find($request->id);
+        if($unit->is_active==1)
+            $unit->is_active=0;
         else
-            $student->is_active=1;
+            $unit->is_active=1;
 
-        $student->save();
+        $unit->save();
     }
 }
