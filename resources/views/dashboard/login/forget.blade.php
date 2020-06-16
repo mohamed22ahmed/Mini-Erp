@@ -49,7 +49,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="submit" value="Send Code" class="form-control btn-fill">
+                                            <input type="submit" value="Send Code" class="form-control btn-fill" style="background-color:#000">
                                         </div>
                                     </form>
                                 </div>
