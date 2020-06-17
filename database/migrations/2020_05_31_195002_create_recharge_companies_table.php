@@ -20,7 +20,7 @@ class CreateRechargeCompaniesTable extends Migration
             $table->string('address');
             $table->string('email');
             $table->string('phone');
-            $table->integer('is_active');
+            $table->integer('is_active')->default(1);
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class CreateRechargeValuesTable extends Migration
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('city_id');
             $table->integer('value');
-            $table->string('notes');
+            $table->string('notes')->nullable();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

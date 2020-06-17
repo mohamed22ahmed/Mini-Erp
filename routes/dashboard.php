@@ -79,7 +79,15 @@ Route::prefix('dashboard')->group(function(){
     Route::resource('admins','AdminController');
 
     //compnay info Routes
-    Route::resource('company', 'CompanyController');
+    Route::get('companies','CompanyController@index');
+    Route::post('companies','CompanyController@update');
+
+
+// --------------------------------------- Recharg Routes -----------------------------------------------------
+
+    // Recharge Company Route
+    Route::resource('recharge_company','Recharge_companyController');
+    Route::get('recharge_company/add', 'Recharge_companyController@showAdd');
 
 
 
