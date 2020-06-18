@@ -92,49 +92,55 @@
             </li>
 
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
-                <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Company Information</a></li>
-
-            </ul>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
+                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Company Information</a></li>
+                </ul>
             </li>
-            </ul>
-        </aside>
+        </ul>
+    </aside>
 
+
+            <div class="container-fluid">
                 <div class="row">
                     @if(Session('lang')=="ar")
                     <div class="col-xl-10 col-lg-9 col-md-8 mr-auto main-div1">
                         <div class="pt-md-5 mt-md-3">
                     @else
-                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div2">
-                        <div class="pt-md-5 mt-md-3">
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div">
+                        <div class="pt-md-5 mt-md-3" >
                     @endif
-                            <div class="text-center mb-5" ></div>
-                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.branch_page')</h3></div>
-                            <div align="right">
-                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_branch')</button>
+                            <div class="text-center mb-5 mt-4 d-flex justify-content-between" >
+                                <div style="margin-left: 15px">
+                                    <h3>@lang('dashboard.branch_page')</h3>
+                                </div>
+                                <div>
+                                    <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_branch')</button>
+                                </div>
                             </div>
-                            <br />
-                            <table id="student_table" class="table table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('dashboard.admin')</th>
-                                        <th>@lang('dashboard.name')</th>
-                                        <th>@lang('dashboard.address')</th>
-                                        <th>@lang('dashboard.phone')</th>
-                                        <th>@lang('dashboard.email')</th>
-                                        <th>@lang('dashboard.action')</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <div style="" class="w-100">
+                                <table id="student_table" class="table table-bordered" style="width:100% ; overflow:scroll">
+                                    <thead>
+                                        <tr>
+                                            <th>@lang('dashboard.admin')</th>
+                                            <th>@lang('dashboard.name')</th>
+                                            <th>@lang('dashboard.address')</th>
+                                            <th>@lang('dashboard.phone')</th>
+                                            <th>@lang('dashboard.email')</th>
+                                            <th>@lang('dashboard.action')</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
 
                             <div id="studentModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <form method="post" id="student_form">
-                                            <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Add Data</h4>
+                                            <div class="modal-header d-flex justify-content-between">
+                                                 <h4 class="modal-title">Add Data</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
                                                 {{csrf_field()}}
@@ -177,12 +183,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
         <style>
             #student_table_wrapper .row {
                 width: 100% !important;
-                margin: auto;
-                margin-left:7px;
             }
         </style>
 
