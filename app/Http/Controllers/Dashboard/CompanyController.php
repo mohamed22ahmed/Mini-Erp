@@ -3,83 +3,45 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use validator;
+use App\Company;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('dashboard.administrator.company_info');
+    public function index(){
+        $data=Company::first();
+        return view('dashboard\administrator\company_info',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function update(Request $request){
+        $request->validate([
+            'name'=>'required|alpha_num',
+            'phone'=>'required',
+            'email'=>'required|email',
+            'trad_id'=>'required|alpha_num',
+            'tax_id'=>'required|alpha_num',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $company=Company::first();
+        $company->name=$request->name;
+        $company->phone=$request->phone;
+        $company->email=$request->email;
+        $company->tax_id=$request->tax_id;
+        $company->trad_id=$request->trad_id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if($request->hasFile('logo')){
+            $fileWithExt=$request->file('logo')->getClientOriginalName();
+            $fileWithoutExt=pathinfo($fileWithExt,PATHINFO_FILENAME);
+            $fileExt=$request->file('logo')->getClientOriginalExtension();
+            $fileNewName=$fileWithoutExt.'_'.time().'.'.$fileExt;
+            $path=$request->file('logo')->storeAs('public/imgs/',$fileNewName);
+            Storage::delete('public/imgs/'.$company->logo);
+            $company->logo=$fileNewName;
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $company->save();
+        return redirect('/dashboard/companies');
     }
 }

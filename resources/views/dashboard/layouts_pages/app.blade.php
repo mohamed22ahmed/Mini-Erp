@@ -13,12 +13,6 @@
         <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
         <title>@yield('title')</title>
         <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +21,14 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/css/main.css') }}">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     </head>
     <body>
         @if(Session('lang')=='ar')
@@ -83,7 +79,6 @@
         <ul class="app-menu">
             <li><a class="app-menu__item active" href="/dashboard"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">@lang('dashboard.dashboard')</span></a></li>
 
-
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-sliders"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fa fa-circle-o"></i>@lang('dashboard.branches')</a></li>
@@ -92,7 +87,14 @@
                     <li><a class="treeview-item" href="/dashboard/units"><i class="icon fa fa-circle-o"></i>@lang('dashboard.units')</a></li>
                     <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fa fa-circle-o"></i>@lang('dashboard.cities')</a></li>
                     <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fa fa-circle-o"></i>@lang('dashboard.in_outs')</a></li>
-                <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fa fa-circle-o"></i>@lang('dashboard.discounts')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fa fa-circle-o"></i>@lang('dashboard.discounts')</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fa fa-circle-o"></i>Companies</a></li>
+                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Values</a></li>
                 </ul>
             </li>
 
@@ -101,32 +103,34 @@
                     <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
                     <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Company Information</a></li>
                 </ul>
-                </li>
-            </ul>
-        </aside>
+            </li>
+        </ul>
+    </aside>
 
-        <section>
-            <div class="container-fluid">
                 <div class="row">
                     @if(Session('lang')=="ar")
                     <div class="col-xl-10 col-lg-9 col-md-8 mr-auto main-div1">
                         <div class="pt-md-5 mt-md-3">
                     @else
-                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div">
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div2">
                         <div class="pt-md-5 mt-md-3">
                     @endif
-                            <div class="text-center mb-5" ></div>
-                            <div>Mohamed Ahmed</div>
-                        </div>
+                        <div class="text-center mb-5" ></div>
+                         @yield('page_content')
                     </div>
-                </div>
-            </div>
-        </section>
+                    </div>
+                    </div>
 
+                    <style>
+                    #student_table_wrapper .row {
+                    width: 100% !important;
+                    margin: auto;
+                    margin-left:7px;
+                    }
+                    </style>
 
-        <script src="{{ asset('dashboard_files/js/jquery-3.3.1.min.js') }}"></script>
-        <script src="{{ asset('dashboard_files/js/popper.min.js') }}"></script>
-        <script src="{{ asset('dashboard_files/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
-    </body>
-</html>
+                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+                    <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
+                    </body>
+                    </html>

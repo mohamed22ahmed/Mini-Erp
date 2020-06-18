@@ -56,4 +56,9 @@ return [
     'discounts'=>'Discount',
     'discount_page'=>'Discount Page',
     'add_discount'=>'Add Discount',
+
+
+    // company
+    'company_info'=>'Company Information',
+    'company_page'=>'Company Page',
 ];
