@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Recharge Values</h4>
+                        <h4>Stores</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -55,36 +55,36 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label>Select Company ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
+                            <label for="Branch_id">Select Branch_ID</label>
+                            <select name="Branch_id" id="Branch_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Select Cities ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="value" id="address" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id">Select User_ID/label>
+                            <select name="user_id" id="user_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Enter Value</label>
-                            <input type="text" name="value" id="value" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>write Notes</label>
-                            <textarea name="" id="" class="form-control" style="height:300px"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Phone</label>
+                            <label for="phone">Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" />
+                            <label for="notes">write Notes</label>
+                            <textarea name="" id="notes" class="form-control" style="height:300px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Recharge Values</h4>
+                        <h4>Products Units</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -55,36 +55,24 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label>Select Company ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
+                            <label for="product_id">Select Product_ID</label>
+                            <select name="product_id" id="product_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Select Cities ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
+                            <label for="unit_id">Select Unit_ID/label>
+                            <select name="unit_id" id="unit_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Enter Value</label>
-                            <input type="text" name="value" id="value" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>write Notes</label>
-                            <textarea name="" id="" class="form-control" style="height:300px"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" />
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="price" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
