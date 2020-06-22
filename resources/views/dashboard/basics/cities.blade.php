@@ -129,9 +129,9 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <form method="post" id="student_form">
-                                            <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Add Data</h4>
+                                            <div class="modal-header d-flex justify-content-between">
+                                                <h4 class="modal-title">Add Data</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
                                                 {{csrf_field()}}

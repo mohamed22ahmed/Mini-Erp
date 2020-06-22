@@ -11,7 +11,7 @@
         <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
         <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
         <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-        <title>Units</title>
+        <title>Categories</title>
         <meta charset="utf-8">
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -81,13 +81,13 @@
 
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-sliders"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fa fa-circle-o"></i>@lang('dashboard.branches')</a></li>
-                <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fa fa-circle-o"></i>@lang('dashboard.categories')</a></li>
-                <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fa fa-circle-o"></i>@lang('dashboard.colors')</a></li>
-                <li><a class="treeview-item" href="/dashboard/units"><i class="icon fa fa-circle-o"></i>@lang('dashboard.units')</a></li>
-                <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fa fa-circle-o"></i>@lang('dashboard.cities')</a></li>
-                <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fa fa-circle-o"></i>@lang('dashboard.in_outs')</a></li>
-                <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fa fa-circle-o"></i>@lang('dashboard.discounts')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fa fa-circle-o"></i>@lang('dashboard.branches')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fa fa-circle-o"></i>@lang('dashboard.categories')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fa fa-circle-o"></i>@lang('dashboard.colors')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/units"><i class="icon fa fa-circle-o"></i>@lang('dashboard.units')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fa fa-circle-o"></i>@lang('dashboard.cities')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fa fa-circle-o"></i>@lang('dashboard.in_outs')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fa fa-circle-o"></i>@lang('dashboard.discounts')</a></li>
                 </ul>
             </li>
 
@@ -109,16 +109,16 @@
                         <div class="pt-md-5 mt-md-3">
                     @endif
                             <div class="text-center mb-5" ></div>
-                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.unit_page')</h3></div>
-
+                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.category_page')</h3></div>
                             <div align="right">
-                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_unit')</button>
+                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_category')</button>
                             </div>
                             <br />
                             <table id="student_table" class="table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>@lang('dashboard.name')</th>
+                                        <th>@lang('dashboard.parent_id')</th>
                                         <th>@lang('dashboard.notes')</th>
                                         <th>@lang('dashboard.action')</th>
                                     </tr>
@@ -141,9 +141,33 @@
                                                     <input type="text" name="name" id="name" class="form-control" />
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>Enter Email</label>
+                                                    <input type="email" name="email" id="email" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Enter phone</label>
+                                                    <input type="text" name="phone" id="phone" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Enter address</label>
+                                                    <input type="text" name="address" id="address" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Enter Branch ID</label>
+                                                    <select class="form-control">
+                                                        <option>Select Branch ID</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Enter Notes</label>
                                                     <input type="text" name="notes" id="notes" class="form-control" />
-                                                </div>
+                                                </div>     
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="student_id" id="student_id" value="" />
@@ -172,9 +196,10 @@
                 $('#student_table').DataTable({
                     "processing": true,
                     "serverSide": true,
-                    "ajax": "{{ route('units.getdata') }}",
+                    "ajax": "{{ route('categories.getdata') }}",
                     "columns":[
                         { "data": "name" },
+                        { "data": "parent_id" },
                         { "data": "notes" },
                         { "data": "action", orderable:false, searchable: false}
                     ]
@@ -193,7 +218,7 @@
                     event.preventDefault();
                     var form_data = $(this).serialize();
                     $.ajax({
-                        url:"{{ route('units.postdata') }}",
+                        url:"{{ route('categories.postdata') }}",
                         method:"POST",
                         data:form_data,
                         dataType:"json",
@@ -225,13 +250,14 @@
                     var id = $(this).attr("id");
                     $('#form_output').html('');
                     $.ajax({
-                        url:"{{route('units.fetchdata')}}",
+                        url:"{{route('categories.fetchdata')}}",
                         method:'get',
                         data:{id:id},
                         dataType:'json',
                         success:function(data)
                         {
                             $('#name').val(data.name);
+                            $('#parent_id').val(data.parent_id);
                             $('#notes').val(data.notes);
                             $('#student_id').val(id);
                             $('#studentModal').modal('show');
@@ -247,7 +273,7 @@
                     if(confirm("Are you sure you want to Delete this data?"))
                     {
                         $.ajax({
-                            url:"{{route('units.removedata')}}",
+                            url:"{{route('categories.removedata')}}",
                             mehtod:"get",
                             data:{id:id},
                             success:function(data)
@@ -266,7 +292,7 @@
                     var id = $(this).attr('id');
 
                     $.ajax({
-                        url:"{{route('units.active')}}",
+                        url:"{{route('categories.active')}}",
                         mehtod:"get",
                         data:{id:id},
                         success:function(data)
