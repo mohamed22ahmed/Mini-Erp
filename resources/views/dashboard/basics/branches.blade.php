@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/css/main.css') }}">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -77,31 +77,31 @@
             </div>
         </div>
         <ul class="app-menu">
-            <li><a class="app-menu__item active" href="/dashboard"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">@lang('dashboard.dashboard')</span></a></li>
+            <li><a class="app-menu__item active" href="/dashboard"><i class="fas fa-chart-line app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.dashboard')</span></a></li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-sliders"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-exchange-alt app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fa fa-circle-o"></i>@lang('dashboard.branches')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fa fa-circle-o"></i>@lang('dashboard.categories')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fa fa-circle-o"></i>@lang('dashboard.colors')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/units"><i class="icon fa fa-circle-o"></i>@lang('dashboard.units')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fa fa-circle-o"></i>@lang('dashboard.cities')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fa fa-circle-o"></i>@lang('dashboard.in_outs')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fa fa-circle-o"></i>@lang('dashboard.discounts')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.branches')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.categories')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.colors')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/units"><i class="icon fas fa-hand-point-right"></i> @lang('dashboard.units')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.cities')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.in_outs')</a></li>
+                    <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.discounts')</a></li>
                 </ul>
             </li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-charging-station app-menu__icon"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fa fa-circle-o"></i>Companies</a></li>
-                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Values</a></li>
+                    <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fas fa-hand-point-right"></i>Companies</a></li>
+                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Values</a></li>
                 </ul>
             </li>
 
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fa fa-circle-o"></i>Admins</a></li>
-                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Company Information</a></li>
+                    <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fas fa-hand-point-right"></i>Admins</a></li>
+                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Company Information</a></li>
                 </ul>
             </li>
         </ul>

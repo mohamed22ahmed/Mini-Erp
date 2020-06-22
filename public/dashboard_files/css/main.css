@@ -10667,7 +10667,7 @@ div.dataTables_wrapper div.dataTables_paginate {
   white-space: nowrap;
   text-align: right;
   display: flex;
-  justify-content:center;
+  justify-content:flex-end;
   margin-bottom: 3rem;
 }
 
@@ -16854,4 +16854,28 @@ be a descendant of the grid when it is being dragged.
 
 .user .user-settings label {
   color: #666;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+div.dataTables_wrapper div.dataTables_length label {
+    display: none !important;
+}
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+  display:none !important
+}
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+    cursor: pointer;
+    position: static !important;
+}
+.sorting {
+  width:auto !important;
+}
+.sorting_asc {
+  width:auto !important
+}
+table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+    content: "";
 }
