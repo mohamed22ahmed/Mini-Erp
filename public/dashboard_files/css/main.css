@@ -16879,3 +16879,9 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
 table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
     content: "";
 }
+
+@media(max-width:792px) {
+  .xoo {
+    padding-top:130px !important ; 
+  }
+}

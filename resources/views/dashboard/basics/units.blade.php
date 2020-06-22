@@ -113,16 +113,17 @@
                     <div class="col-xl-10 col-lg-9 col-md-8 mr-auto main-div1">
                         <div class="pt-md-5 mt-md-3">
                     @else
-                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div2">
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div">
                         <div class="pt-md-5 mt-md-3">
                     @endif
-                            <div class="text-center mb-5" ></div>
-                            <div align="left" style="margin-left: 15px"><h3>@lang('dashboard.unit_page')</h3></div>
 
-                            <div align="right">
-                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_unit')</button>
+                            <div style="margin-left: 15px">
+                                    <h3>@lang('dashboard.unit_page')</h3>
+                                </div>
+                                <div>
+                                    <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@lang('dashboard.add_unit')</button>
+                                </div>
                             </div>
-                            <br />
                             <table id="student_table" class="table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>

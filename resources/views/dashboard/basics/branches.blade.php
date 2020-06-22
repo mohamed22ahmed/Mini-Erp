@@ -70,42 +70,42 @@
 
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
         <aside class="app-sidebar">
-        <div class="app-sidebar__user">
-            <div>
-            <p class="app-sidebar__user-designation">@lang('dashboard.welcome')</p><br>
-            <p class="app-sidebar__user-name" style="font-size:22px">{{  Session::get('username') }}</p>
+            <div class="app-sidebar__user">
+                <div>
+                <p class="app-sidebar__user-designation">@lang('dashboard.welcome')</p><br>
+                <p class="app-sidebar__user-name" style="font-size:22px">{{  Session::get('username') }}</p>
+                </div>
             </div>
-        </div>
-        <ul class="app-menu">
-            <li><a class="app-menu__item active" href="/dashboard"><i class="fas fa-chart-line app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.dashboard')</span></a></li>
+            <ul class="app-menu">
+                <li><a class="app-menu__item active" href="/dashboard"><i class="fas fa-chart-line app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.dashboard')</span></a></li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-exchange-alt app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.branches')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.categories')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.colors')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/units"><i class="icon fas fa-hand-point-right"></i> @lang('dashboard.units')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.cities')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.in_outs')</a></li>
-                    <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.discounts')</a></li>
-                </ul>
-            </li>
+                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-exchange-alt app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="treeview-item" href="/dashboard/branches"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.branches')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.categories')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.colors')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/units"><i class="icon fas fa-hand-point-right"></i> @lang('dashboard.units')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/cities"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.cities')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/in_outs"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.in_outs')</a></li>
+                        <li><a class="treeview-item" href="/dashboard/discounts"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.discounts')</a></li>
+                    </ul>
+                </li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-charging-station app-menu__icon"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fas fa-hand-point-right"></i>Companies</a></li>
-                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Values</a></li>
-                </ul>
-            </li>
+                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-charging-station app-menu__icon"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fas fa-hand-point-right"></i>Companies</a></li>
+                        <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Values</a></li>
+                    </ul>
+                </li>
 
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fas fa-hand-point-right"></i>Admins</a></li>
-                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Company Information</a></li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
+                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="treeview-item" href="/dashboard/admins"><i class="icon fas fa-hand-point-right"></i>Admins</a></li>
+                        <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Company Information</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
 
 
             <div class="container-fluid">
@@ -117,7 +117,7 @@
                     <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div">
                         <div class="pt-md-5 mt-md-3" >
                     @endif
-                            <div class="text-center mb-5 mt-4 d-flex justify-content-between" >
+                            <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
                                 <div style="margin-left: 15px">
                                     <h3>@lang('dashboard.branch_page')</h3>
                                 </div>

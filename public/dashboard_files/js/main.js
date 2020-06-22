@@ -56,4 +56,16 @@
     //Activate bootstrip tooltips
     $("[data-toggle='tooltip']").tooltip();
 
+    var ty=0;
+    $('.com-collapse').click(function(){
+        if(ty==0) {
+            $('.compForm').slideDown(300);
+            ty=1 ; 
+        }
+        else {
+            $('.compForm').slideUp(300);
+            ty=0 ; 
+        }
+    })
+
 })();
