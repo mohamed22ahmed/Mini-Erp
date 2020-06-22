@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Recharge_companyController extends Controller
+class Exp_revController extends Controller
 {
     public function index(){
-        return view('dashboard.Recharge.recharge_companies');
+        return view('dashboard.expenses.incomes_out_operations');
     }
 }

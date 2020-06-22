@@ -11,7 +11,7 @@ use Validator;
 class DiscountController extends Controller
 {
     function index(){
-        return view('dashboard.discounts');
+        return view('dashboard.basics.discounts');
     }
 
     function getdata(){

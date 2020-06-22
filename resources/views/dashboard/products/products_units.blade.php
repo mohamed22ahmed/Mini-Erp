@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Stores Transfer</h4>
+                        <h4>Products Units</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,13 +26,20 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Product</th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>t-shirt</td>
+                                <td>kilo</td>
+                                <td>3000</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,48 +62,24 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="Branch_id">Select Branch_ID</label>
-                            <select name="Branch_id" id="Branch_id" class="form-control">
+                            <label for="product_id">Select Product_ID</label>
+                            <select name="product_id" id="product_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="text" name="date" id="date" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" name="value" id="address" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="from_id">From_Store_ID</label>
-                            <select name="from_id" id="from_id" class="form-control">
+                            <label for="unit_id">Select Unit_ID</label>
+                            <select name="unit_id" id="unit_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="to_id">TO_Store_ID</label>
-                            <select name="to_id" id="to_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_id">User_ID</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="pro-count">Product Count</label>
-                            <input type="text" name="product_count" id="pro-count" class="form-control" />
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="price" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

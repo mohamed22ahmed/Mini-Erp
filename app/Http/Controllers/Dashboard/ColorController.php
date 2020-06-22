@@ -11,7 +11,7 @@ use Validator;
 class ColorController extends Controller
 {
     function index(){
-        return view('dashboard.colors');
+        return view('dashboard.basics.colors');
     }
 
     function getdata(){

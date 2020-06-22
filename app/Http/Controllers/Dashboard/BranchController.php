@@ -11,7 +11,7 @@ use Validator;
 class BranchController extends Controller
 {
     function index(){
-        return view('dashboard.branches');
+        return view('dashboard.basics.branches');
     }
 
     function getdata(){

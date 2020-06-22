@@ -94,9 +94,32 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fa fa-circle-o"></i>Companies</a></li>
-                    <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fa fa-circle-o"></i>Values</a></li>
+                    <li><a class="treeview-item" href="/dashboard/recharge_value"><i class="icon fa fa-circle-o"></i>Values</a></li>
                 </ul>
             </li>
+
+            <li><a class="app-menu__item" href="/dashboard/exp_rev"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Expenses Revenues</span></a>
+
+
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Stores</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="/dashboard/store"><i class="icon fa fa-circle-o"></i>Store</a></li>
+                    <li><a class="treeview-item" href="/dashboard/store_transfer"><i class="icon fa fa-circle-o"></i>Store Transfer</a></li>
+                    <li><a class="treeview-item" href="/dashboard/store_products"><i class="icon fa fa-circle-o"></i>Store Products</a></li>
+                </ul>
+            </li>
+
+
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Products</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="/dashboard/product"><i class="icon fa fa-circle-o"></i>Products</a></li>
+                    <li><a class="treeview-item" href="/dashboard/product_color"><i class="icon fa fa-circle-o"></i>Product Colors</a></li>
+                    <li><a class="treeview-item" href="/dashboard/product_discount"><i class="icon fa fa-circle-o"></i>Product Discounts</a></li>
+                    <li><a class="treeview-item" href="/dashboard/product_unit"><i class="icon fa fa-circle-o"></i>Product Units</a></li>
+
+                </ul>
+            </li>
+
 
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">@lang('dashboard.administrator')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">

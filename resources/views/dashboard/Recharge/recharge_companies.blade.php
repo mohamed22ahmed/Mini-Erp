@@ -26,13 +26,24 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Branch</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Phones</td>
+                                <td>Mohamed</td>
+                                <td>Abotig</td>
+                                <td>012346</td>
+                                <td>m@gmail.com</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

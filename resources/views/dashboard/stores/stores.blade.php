@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Stores Transfer Products</h4>
+                        <h4>Stores</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,13 +26,26 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Name</th>
+                                <th>Manager</th>
+                                <th>Branch</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>TStore</td>
+                                <td>Mohamed</td>
+                                <td>Cairo</td>
+                                <td>Abotig</td>
+                                <td>012345</td>
+                                <td>help help</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,24 +68,36 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="trans_id">Select Transfere_ID</label>
-                            <select name="trans_id" id="trans_id" class="form-control">
+                            <label for="Branch_id">Select Branch_ID</label>
+                            <select name="Branch_id" id="Branch_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="pro_id">Select Product_ID</label>
-                            <select name="pro_id" id="pro_id" class="form-control">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="value" id="address" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id">Select User_ID</label>
+                            <select name="user_id" id="user_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="amount">Amount</label>
-                            <input type="text" name="amount" id="amount" class="form-control" />
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">write Notes</label>
+                            <textarea name="" id="notes" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

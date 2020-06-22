@@ -12,7 +12,7 @@ use Validator;
 class CityController extends Controller
 {
     function index(){
-        return view('dashboard.cities');
+        return view('dashboard.basics.cities');
     }
 
     function getdata(){

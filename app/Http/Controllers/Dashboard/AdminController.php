@@ -17,7 +17,7 @@ class AdminController extends Controller
         $admins= Admin::paginate(25);
         if(!session('id'))
             return redirect('dashboard/login');
-        return view('dashboard.admins',compact('admins'));
+        return view('dashboard.administrator.admins',compact('admins'));
     }
 
     /**

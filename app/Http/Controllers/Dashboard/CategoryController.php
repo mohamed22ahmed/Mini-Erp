@@ -12,7 +12,7 @@ use Validator;
 class CategoryController extends Controller
 {
     function index(){
-        return view('dashboard.categories');
+        return view('dashboard.basics.categories');
     }
 
     function getdata(){

@@ -11,7 +11,7 @@ use Validator;
 class UnitController extends Controller
 {
     function index(){
-        return view('dashboard.units');
+        return view('dashboard.basics.units');
     }
 
     function getdata(){

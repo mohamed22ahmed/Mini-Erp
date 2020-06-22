@@ -26,13 +26,18 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Product</th>
+                                <th>Discount</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>oppo</td>
+                                <td>20%</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,7 +68,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="discounts_id">Select Discounts_ID/label>
+                            <label for="discounts_id">Select Discounts_ID</label>
                             <select name="discounts_id" id="discounts_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>

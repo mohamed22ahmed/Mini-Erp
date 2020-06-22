@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Incomes Out Operations</h4>
+                        <h4>Products</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,13 +26,32 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Name</th>
+                                <th>Store</th>
+                                <th>Category</th>
+                                <th>Photo</th>
+                                <th>Current Amount</th>
+                                <th>Minimum Amount</th>
+                                <th>Initial Amount</th>
+                                <th>Damaged Amount</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>oppo</td>
+                                <td>Cairo</td>
+                                <td>Phones</td>
+                                <td><img src=""></td>
+                                <td>20</td>
+                                <td>5</td>
+                                <td>100</td>
+                                <td>3</td>
+                                <td>chines phones</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary btn-sm"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger btn-sm"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success btn-sm"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,44 +74,52 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="In_id">Select In_Out_ID</label>
-                            <select name="In_id" id="In_id" class="form-control">
+                            <label for="store_id">Select Store_ID</label>
+                            <select name="store_id" id="store_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Branch_id">Select Branch_ID</label>
-                            <select name="Branch_id" id="Branch_id" class="form-control">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cat_id">Select Category_ID/label>
+                            <select name="cat_id" id="cat_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="user_id">Select User_ID</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Enter Date</label>
-                            <input type="text" name="date" id="date" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="value">Enter Value</label>
-                            <input type="text" name="value" id="value" class="form-control" />
+                            <label for="photo">Address</label>
+                            <input type="file" name="photo" id="photo" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label for="desc">write Descriptions</label>
                             <textarea name="" id="desc" class="form-control" style="height:300px"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="type">Enter Type(in , out)</label>
-                            <input type="text" name="type" id="type" class="form-control" />
+                            <label for="is-active">Is Active</label>
+                            <input type="text" name="is-active" id="is-active" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="current-amount">Current Amount</label>
+                            <input type="text" name="current-amount" id="current-amount" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="min-amount">Minimum Amount</label>
+                            <input type="text" name="Minimum-amount" id="min-amount" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="in-amount">Initial Amount</label>
+                            <input type="text" name="initial-amount" id="in-amount" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dam-amount">Damaged Amount</label>
+                            <input type="text" name="damaged-amount" id="dam-amount" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

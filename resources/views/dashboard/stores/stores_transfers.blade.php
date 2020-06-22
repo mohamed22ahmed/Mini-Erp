@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Products Colors</h4>
+                        <h4>Stores Transfer</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,13 +26,24 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Manager</th>
+                                <th>From Store</th>
+                                <th>To Store</th>
+                                <th>Product Count</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Mohamed</td>
+                                <td>Cairo</td>
+                                <td>Assiut</td>
+                                <td>50</td>
+                                <td>20/2/2020</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -54,21 +65,39 @@
                     <div class="modal-body">
                         {{csrf_field()}}
                         <span id="form_output"></span>
+
                         <div class="form-group">
-                            <label for="product_id">Select Product_ID</label>
-                            <select name="product_id" id="product_id" class="form-control">
+                            <label for="date">Date</label>
+                            <input type="text" name="date" id="date" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="from_id">From_Store_ID</label>
+                            <select name="from_id" id="from_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="color_id">Select Color_ID/label>
-                            <select name="color_id" id="color_id" class="form-control">
+                            <label for="to_id">TO_Store_ID</label>
+                            <select name="to_id" id="to_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id">User_ID</label>
+                            <select name="user_id" id="user_id" class="form-control">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pro-count">Product Count</label>
+                            <input type="text" name="product_count" id="pro-count" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

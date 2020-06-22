@@ -26,13 +26,24 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Branch</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Phones</td>
+                                <td>Mohamed</td>
+                                <td>Abotig</td>
+                                <td>012346</td>
+                                <td>m@gmail.com</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -74,10 +85,7 @@
                             <label>Enter Value</label>
                             <input type="text" name="value" id="value" class="form-control" />
                         </div>
-                        <div class="form-group">
-                            <label>write Notes</label>
-                            <textarea name="" id="" class="form-control" style="height:300px"></textarea>
-                        </div>
+
                         <div class="form-group">
                             <label>Enter Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" />
@@ -85,6 +93,10 @@
                         <div class="form-group">
                             <label>Enter Email</label>
                             <input type="email" name="email" id="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>write Notes</label>
+                            <textarea name="" id="" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

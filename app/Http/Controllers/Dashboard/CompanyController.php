@@ -12,7 +12,7 @@ class CompanyController extends Controller
 {
     public function index(){
         $data=Company::first();
-        return view('dashboard\administrator\company_info',compact('data'));
+        return view('dashboard.administrator.company_info',compact('data'));
     }
 
     public function update(Request $request){

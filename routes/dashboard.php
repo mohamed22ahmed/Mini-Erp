@@ -86,12 +86,42 @@ Route::prefix('dashboard')->group(function(){
 // --------------------------------------- Recharg Routes -----------------------------------------------------
 
     // Recharge Company Route
-    Route::resource('recharge_company','Recharge_companyController');
-    Route::get('recharge_company/add', 'Recharge_companyController@showAdd');
+    Route::get('recharge_company','Recharge_companyController@index');
+
+    // Recharge Company Route
+    Route::get('recharge_value','Recharge_valueController@index');
+
+// ---------------------------------------- Expenses and revenues -----------------------------------------------
+    Route::get('exp_rev','Exp_revController@index');
 
 
 
 
+// ------------------------------------------ Stores Routes ------------------------------------------------------
+    // store Routes
+    Route::get('store','StoreController@index');
+
+    // store transfer Routes
+    Route::get('store_transfer','Store_transferController@index');
+
+    // store transfer products Routes
+    Route::get('store_products','Store_productController@index');
+
+
+
+
+// ------------------------------------------ Products Routes ------------------------------------------------------
+    // product Routes
+    Route::get('product','ProductController@index');
+
+    //product colors routes
+    Route::get('product_color','Product_colorController@index');
+
+    //product discount routes
+    Route::get('product_discount','Product_discountController@index');
+
+    //product unit routes
+    Route::get('product_unit','Product_unitController@index');
 
 });
 Route::post('logout','DashboardController@logout');

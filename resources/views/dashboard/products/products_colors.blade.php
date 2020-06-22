@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title" style="float: left">
-                        <h4>Products Units</h4>
+                        <h4>Products Colors</h4>
                     </div>
 
                     <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,13 +26,18 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
-                                <th>mm</th>
+                                <th>Product</th>
+                                <th>Color</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>oppo</td>
+                                <td>red</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,16 +68,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="unit_id">Select Unit_ID/label>
-                            <select name="unit_id" id="unit_id" class="form-control">
+                            <label for="color_id">Select Color_ID</label>
+                            <select name="color_id" id="color_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="text" name="price" id="price" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

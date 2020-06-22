@@ -11,7 +11,7 @@ use Validator;
 class In_outController extends Controller
 {
     function index(){
-        return view('dashboard.in_outs');
+        return view('dashboard.basics.in_outs');
     }
 
     function getdata(){
