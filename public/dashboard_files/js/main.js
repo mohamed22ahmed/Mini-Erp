@@ -32,7 +32,7 @@
             $('.app-sidebar').fadeOut(300);
             $('.app-sidebar__toggle').toggleClass('pr-5');
             $('.app-header__logo').fadeOut(300);
-            $('.main-div1').removeClass('col-xl-10 col-lg-9 col-md-8 mr-auto').addClass('col-xl-11 col-lg-10 col-md-9 mr-5');
+            $('.main-div1').removeClass('col-xl-10 col-lg-9 col-md-8 mr-auto').addClass('col-xl-11 col-lg-10 col-md-9');
             $('body').addClass('sidenav-toggled66');
         } else if ($('body').hasClass('sidenav-toggled66')) {
             $('.app-sidebar').fadeIn(300);
