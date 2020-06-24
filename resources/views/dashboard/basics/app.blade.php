@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
@@ -52,11 +54,11 @@
                 <li class="dropdown">
                     <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                     <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> @lang('dashboard.settings')</a></li>
-                        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> @lang('dashboard.profile')</a></li>
+                        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog"></i> @lang('dashboard.settings')</a></li>
+                        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user"></i> @lang('dashboard.profile')</a></li>
                         <li>
                             <a class="dropdown-item" href="/logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out fa-lg"></i>
+                                <i class="fas fa-sign-out-alt"></i>
                                 @lang('dashboard.logout')
                                 <form id="logout-form" action="/logout" method="POST" style="...">
                                     @csrf
@@ -68,7 +70,6 @@
             </ul>
         </header>
 
-        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
@@ -98,9 +99,9 @@
                     </ul>
                 </li>
 
-                <li><a class="app-menu__item" href="/dashboard/exp_rev"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Expenses Revenues</span></a>
+                <li><a class="app-menu__item" href="/dashboard/exp_rev"><i class="fas fa-chart-bar app-menu__icon "></i><span class="app-menu__label">Expenses Revenues</span></a>
 
-                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Stores</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fas fa-store"></i><span class="app-menu__label">Stores</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="/dashboard/store"><i class="icon fas fa-hand-point-right"></i>Store</a></li>
                         <li><a class="treeview-item" href="/dashboard/store_transfer"><i class="icon fas fa-hand-point-right"></i>Store Transfer</a></li>
@@ -108,7 +109,7 @@
                     </ul>
                 </li>
 
-                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Products</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fab fa-product-hunt"></i><span class="app-menu__label">Products</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="/dashboard/product"><i class="icon fas fa-hand-point-right"></i>Products</a></li>
                         <li><a class="treeview-item" href="/dashboard/product_color"><i class="icon fas fa-hand-point-right"></i>Product Colors</a></li>
@@ -171,7 +172,12 @@
 
                         @yield('foo')
 
-                        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script>
+            $(function () {
+                $("select").select2();
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
     </body>

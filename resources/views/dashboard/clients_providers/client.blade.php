@@ -4,53 +4,49 @@
 @endsection
 
 @section('page_content')
-    <div class="container">
+    <div class="container-fluid">
+        <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
+            <div style="margin-left: 15px">
+                <h3>Clients</h3>
+            </div>
+            <div>
+                <button class="btn btn-success" id="add_data">
+                    Add
+                    <i class="fa fa-user-plus fa-fw"></i>
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title" style="float: left">
-                            <h4>Clients</h4>
-                        </div>
-
-                        <div class="card-tools" style="float: right; margin-right:5px">
-                            <button class="btn btn-success" id="add_data">
-                                Add
-                                <i class="fa fa-user-plus fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Branch</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>Client Type</th>
-                                    <th>Notes</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr>
-                                    <td>Mohamed</td>
-                                    <td>Cairo</td>
-                                    <td>m@gmail.com</td>
-                                    <td>01112345678</td>
-                                    <td>assiut</td>
-                                    <td>Current</td>
-                                    <td>this for current client</td>
-                                    <td>
-                                        <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                        <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                        <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div style="overflow-x:auto !important">
+                    <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Client Type</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Mohamed</td>
+                                <td>Cairo</td>
+                                <td>m@gmail.com</td>
+                                <td>01112345678</td>
+                                <td>assiut</td>
+                                <td>Current</td>
+                                <td>this for current client</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -95,24 +91,29 @@
 
                         <div class="form-group">
                             <label for="user_type">Select Branch</label>
-                            <select name="user_type" id="user_type" class="form-control">
+                            <select name="user_type" id="sel" class="form-control exp-class">
                                 <option value="1">Current</option>
-                                <option value="2">Expected</option>
+                                <option value="Expected" class="exp">Expected</option>
                             </select>
                         </div>
 
 
 
 
-                        {{--  the 2 inputs placed under  this commit displays when the user_type is Expected  --}}
-                        <div class="form-group">
-                            <label>Expected Date</label>
-                            <input type="date" name="exp_date" id="exp_date" class="form-control" />
+                        <!-- --  the 2 inputs placed under  this commit displays when the user_type is Expected  -- -->
+
+                        <div class="form-group" id="hide" style="display:none">
+                            <div class="form-group">
+                                <label>Expected Date</label>
+                                <input type="date" name="exp_date" id="exp_date" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Alert Before Hours</label>
+                                <input type="number" name="alert_hours" id="alert_hours" class="form-control" />
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label>Alert Before Hours</label>
-                            <input type="number" name="alert_hours" id="alert_hours" class="form-control" />
-                        </div>
+
 
 
 
@@ -145,5 +146,20 @@
                 $('.modal-title').text('Add Data');
             });
         });
+    </script>
+
+    <script>
+        var sel    =  document.getElementById('sel'),
+        hide   = document.getElementById('hide');
+        sel.onchange = function(){
+            if(this.value==='Expected')
+            {
+                hide.style.display='block';
+            }
+            else
+            {
+                hide.style.display='none';
+            }
+        }
     </script>
 @endsection

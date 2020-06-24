@@ -103,7 +103,7 @@
                                                     <label for="inputName2"  >Company Name</label>
                                                     <div>
                                                         <input type="text"  name="name" id="name" class="form-control">
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -111,7 +111,7 @@
                                                     <label for="inputName2"  >Company Phone</label>
                                                     <div>
                                                         <input type="text"  name="phone" id="phone" class="form-control">
-                                                       
+
                                                     </div>
                                                 </div>
                                             </div><br>
@@ -121,7 +121,7 @@
                                                     <label for="inputName2"  >Company Email</label>
                                                     <div>
                                                         <input type="email"  name="email" id="email" class="form-control" >
-                                                       
+
                                                     </div>
                                                 </div>
 
@@ -129,14 +129,14 @@
                                                     <label for="inputName2"  >Trade Id</label>
                                                     <div>
                                                         <input type="text"  name="trad_id" id="trad_id" class="form-control" >
-                                                       
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="inputName2"  >Tax Id</label>
                                                     <div>
                                                         <input type="text"  name="tax_id" id="tax_id" class="form-control">
-                                                       
+
                                                     </div>
                                                 </div>
                                             </div><br>

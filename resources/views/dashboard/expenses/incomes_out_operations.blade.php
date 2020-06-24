@@ -5,25 +5,23 @@
 
 @section('page_content')
 
-    <div class="container">
+<div class="container-fluid">
+        <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
+            <div style="margin-left: 15px">
+                <h3>Product Discounts</h3>
+            </div>
+            <div>
+                <button class="btn btn-success" id="add_data">
+                    Add
+                    <i class="fa fa-user-plus fa-fw"></i>
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title" style="float: left">
-                            <h4>Expenses and Revenues Operations</h4>
-                        </div>
+                <div style="overflow-x:auto !important">
+                    <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
 
-                        <div class="card-tools" style="float: right; margin-right:5px">
-                            <button class="btn btn-success" id="add_data">
-                                Add
-                                <i class="fa fa-user-plus fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
                             <tbody>
                                 <tr>
                                     <th>Expenses Revenues</th>
@@ -55,7 +53,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">

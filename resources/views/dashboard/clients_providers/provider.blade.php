@@ -4,51 +4,47 @@
 @endsection
 
 @section('page_content')
-    <div class="container">
+<div class="container-fluid">
+        <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
+            <div style="margin-left: 15px">
+                <h3>Providers</h3>
+            </div>
+            <div>
+                <button class="btn btn-success" id="add_data">
+                    Add
+                    <i class="fa fa-user-plus fa-fw"></i>
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title" style="float: left">
-                            <h4>Providers</h4>
-                        </div>
-
-                        <div class="card-tools" style="float: right; margin-right:5px">
-                            <button class="btn btn-success" id="add_data">
-                                Add
-                                <i class="fa fa-user-plus fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Branch</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>Notes</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr>
-                                    <td>Mohamed</td>
-                                    <td>Cairo</td>
-                                    <td>m@gmail.com</td>
-                                    <td>01112345678</td>
-                                    <td>assiut</td>
-                                    <td>this for current client</td>
-                                    <td>
-                                        <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                        <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                        <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div style="overflow-x:auto !important">
+                    <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Mohamed</td>
+                                <td>Cairo</td>
+                                <td>m@gmail.com</td>
+                                <td>01112345678</td>
+                                <td>assiut</td>
+                                <td>this for current client</td>
+                                <td>
+                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -42,11 +42,12 @@
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>Select Admin</label>
-                            <select name="admin_id" id="admin_id">
-                                <option value="">ahmed</option>
-                                <option value="">ali</option>
-                                <option value="">mohamed</option>
+                            <select class="form-control"name="admin_id" id="admin_id">
+                                <option>Ahmed</option>
+                                <option>Mohamed</option>
+                                <option>Mahmoud</option>
                             </select>
+
                         </div>
                         <div class="form-group">
                             <label>Enter Name</label>
