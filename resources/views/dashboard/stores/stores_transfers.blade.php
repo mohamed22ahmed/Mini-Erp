@@ -6,21 +6,21 @@
 @section('page_content')
 
 <div class="container-fluid">
-    <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
-        <div style="margin-left: 15px">
-            <h3>Stores Transfer</h3>
+        <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
+            <div style="margin-left: 15px">
+                <h3>Stores Transfere</h3>
+            </div>
+            <div>
+                <button class="btn btn-success" id="add_data">
+                    Add
+                    <i class="fa fa-user-plus fa-fw"></i>
+                </button>
+            </div>
         </div>
-        <div>
-            <button class="btn btn-success" id="add_data">
-                Add
-                <i class="fa fa-user-plus fa-fw"></i>
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div style="overflow-x:auto !important">
-                <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="overflow-x:auto !important">
+                    <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
                     <tbody>
                         <tr>
                             <th>Manager</th>

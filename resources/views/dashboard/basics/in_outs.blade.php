@@ -13,15 +13,23 @@
 @endsection
 
 @section('content')
-<table id="student_table" class="table table-bordered" style="width:100%">
-    <thead>
-        <tr>
-            <th>@lang('dashboard.name')</th>
-            <th>@lang('dashboard.notes')</th>
-            <th>@lang('dashboard.action')</th>
-        </tr>
-    </thead>
-</table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="overflow-x:auto !important">
+                    <table id="student_table" class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
+                        <thead>
+                            <tr>
+                                <th>@lang('dashboard.name')</th>
+                                <th>@lang('dashboard.notes')</th>
+                                <th>@lang('dashboard.action')</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div id="studentModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

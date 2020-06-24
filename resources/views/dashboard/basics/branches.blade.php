@@ -13,21 +13,27 @@
 @endsection
 
 @section('content')
-    <div style="" class="w-100">
-        <table id="student_table" class="table table-bordered" style="width:100% ; overflow:scroll">
-            <thead>
-                <tr>
-                    <th>@lang('dashboard.admin')</th>
-                    <th>@lang('dashboard.name')</th>
-                    <th>@lang('dashboard.address')</th>
-                    <th>@lang('dashboard.phone')</th>
-                    <th>@lang('dashboard.email')</th>
-                    <th>@lang('dashboard.action')</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="overflow-x:auto !important">
+                    <table id="student_table" class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
+                        <thead>
+                            <tr>
+                                <th>@lang('dashboard.admin')</th>
+                                <th>@lang('dashboard.name')</th>
+                                <th>@lang('dashboard.address')</th>
+                                <th>@lang('dashboard.phone')</th>
+                                <th>@lang('dashboard.email')</th>
+                                <th>@lang('dashboard.action')</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="studentModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

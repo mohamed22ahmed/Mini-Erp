@@ -5,7 +5,7 @@
 
 @section('page_content')
 <div class="container">
-    <div class="card-header com-collapse d-flex justify-content-between">
+    <div class="card-header com-collapse d-flex justify-content-between xoo">
         <h4>@lang('dashboard.company_page')</h4>
         <p class="text-primary "> Click To Show Company InFo</p>
     </div>
