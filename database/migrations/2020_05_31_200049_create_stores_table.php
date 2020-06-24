@@ -20,8 +20,8 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone');
-            $table->string('notes');
-            $table->integer('is_active');
+            $table->string('notes')->nullable();
+            $table->integer('is_active')->default(1);
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();

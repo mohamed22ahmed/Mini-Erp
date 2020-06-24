@@ -20,11 +20,11 @@ class CreateClientsTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('phone');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->integer('user_type');// 1 for expected, 0 for current
             $table->date('expected_user_date')->nullable();
             $table->integer('alert_after_hours')->nullable();
-            $table->integer('is_active');
+            $table->integer('is_active')->default(1);
 
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();

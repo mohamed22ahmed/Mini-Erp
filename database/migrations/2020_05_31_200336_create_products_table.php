@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('photo');
             $table->string('description');
-            $table->integer('is_active');
+            $table->integer('is_active')->default(1);
             $table->integer('current_amount');
             $table->integer('minimum_amount');
             $table->integer('initial_amount');

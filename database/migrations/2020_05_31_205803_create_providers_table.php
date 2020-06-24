@@ -20,8 +20,8 @@ class CreateProvidersTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('phone');
-            $table->string('notes');
-            $table->integer('is_active');
+            $table->string('notes')->nullable();
+            $table->integer('is_active')->default(1);
 
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();

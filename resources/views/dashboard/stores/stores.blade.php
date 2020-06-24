@@ -1,6 +1,6 @@
 @extends('dashboard.layouts_pages.app')
 @section('title')
-    Company Info
+    Stores
 @endsection
 
 @section('page_content')

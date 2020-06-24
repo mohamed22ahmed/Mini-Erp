@@ -1,17 +1,16 @@
 @extends('dashboard.layouts_pages.app')
 @section('title')
-    Expenses and Revenues
+    Clients
 @endsection
 
 @section('page_content')
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title" style="float: left">
-                            <h4>Expenses and Revenues Operations</h4>
+                            <h4>Clients</h4>
                         </div>
 
                         <div class="card-tools" style="float: right; margin-right:5px">
@@ -26,23 +25,23 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th>Expenses Revenues</th>
+                                    <th>Name</th>
                                     <th>Branch</th>
-                                    <th>Admin</th>
-                                    <th>Date</th>
-                                    <th>Value</th>
-                                    <th>Type</th>
-                                    <th>Description</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Client Type</th>
+                                    <th>Notes</th>
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td>Expenses</td>
-                                    <td>Cairo</td>
                                     <td>Mohamed</td>
-                                    <td>25/5/2020</td>
-                                    <td>250</td>
-                                    <td>In</td>
-                                    <td>phone for you</td>
+                                    <td>Cairo</td>
+                                    <td>m@gmail.com</td>
+                                    <td>01112345678</td>
+                                    <td>assiut</td>
+                                    <td>Current</td>
+                                    <td>this for current client</td>
                                     <td>
                                         <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
                                         <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
@@ -69,44 +68,58 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="In_id">Select In_Out_ID</label>
-                            <select name="In_id" id="In_id" class="form-control">
+                            <label>Enter Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Email</label>
+                            <input type="email" name="email" id="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Address</label>
+                            <input type="text" name="address" id="address" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="Branch_id">Select Branch_ID</label>
-                            <select name="Branch_id" id="Branch_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="user_type">Select Branch</label>
+                            <select name="user_type" id="user_type" class="form-control">
+                                <option value="1">Current</option>
+                                <option value="2">Expected</option>
                             </select>
                         </div>
+
+
+
+
+                        {{--  the 2 inputs placed under  this commit displays when the user_type is Expected  --}}
                         <div class="form-group">
-                            <label for="user_id">Select User_ID</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
+                            <label>Expected Date</label>
+                            <input type="date" name="exp_date" id="exp_date" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="date">Enter Date</label>
-                            <input type="text" name="date" id="date" class="form-control" />
+                            <label>Alert Before Hours</label>
+                            <input type="number" name="alert_hours" id="alert_hours" class="form-control" />
                         </div>
+
+
+
+
                         <div class="form-group">
-                            <label for="value">Enter Value</label>
-                            <input type="text" name="value" id="value" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="desc">write Descriptions</label>
-                            <textarea name="" id="desc" class="form-control" style="height:300px"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="type">Enter Type(in , out)</label>
-                            <input type="text" name="type" id="type" class="form-control" />
+                            <label>Enter Notes</label>
+                            <input type="text" name="notes" id="notes" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -121,16 +134,16 @@
     </div>
 
     <script type="text/javascript">
-            $(document).ready(function() {
+        $(document).ready(function() {
 
-                $('#add_data').click(function(){
-                    $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
-                });
+            $('#add_data').click(function(){
+                $('#sss').modal('show');
+                $('#student_form')[0].reset();
+                $('#form_output').html('');
+                $('#button_action').val('insert');
+                $('#action').val('Add');
+                $('.modal-title').text('Add Data');
             });
-        </script>
+        });
+    </script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('dashboard.layouts_pages.app')
 @section('title')
-    Company Info
+    Recharge Companies
 @endsection
 
 @section('page_content')
@@ -33,18 +33,20 @@
                                 <th>Email</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>Phones</td>
-                                <td>Mohamed</td>
-                                <td>Abotig</td>
-                                <td>012346</td>
-                                <td>m@gmail.com</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($rech_companies as $rec)
+                                <tr>
+                                    <td>{{ $rec->branch->name }}</td>
+                                    <td>{{ $rec->name }}</td>
+                                    <td>{{ $rec->address }}</td>
+                                    <td>{{ $rec->phone }}</td>
+                                    <td>{{ $rec->email }}</td>
+                                    <td>
+                                        <a href="/dashboard/recharge_company/edit/{{ $rec->id }}" id="edit_data" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="/dashboard/recharge_company/delete/{{ $rec->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                        <a href="/dashboard/recharge_company/active/{{ $rec->id }}" class="btn {{ $rec->is_active==1?'btn-success':'btn-danger' }}"><i fas fa-active></i>{{ $rec->is_active==1?'Active':'Inactive' }}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -57,37 +59,37 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('recharge_company_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        {{csrf_field()}}
+                        @csrf
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>Select Branch ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <select name="branch_id" id="branch_id" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Enter Name</label>
-                            <input type="text" name="name" id="name" class="form-control" />
+                            <input type="text" name="name" id="name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Enter Address</label>
-                            <input type="text" name="address" id="address" class="form-control" />
+                            <input type="text" name="address" id="address" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Enter Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" />
+                            <input type="text" name="phone" id="phone" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" />
+                            <input type="email" name="email" id="email" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -103,14 +105,13 @@
 
     <script type="text/javascript">
             $(document).ready(function() {
-
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
+                });
+
+                $('#edit_data').click(function(){
+                    $('#sss').modal('show');
+                    event.preventDefault()
                 });
             });
         </script>

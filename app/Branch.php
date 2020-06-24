@@ -30,23 +30,23 @@ class Branch extends Model
     }
 
     public function deliveries(){
-        return $this->hasMany(App\Delivery::class);
+        return $this->hasMany(Delivery::class);
     }
 
     public function buy_orders(){
-        return $this->hasMany(App\Buy_order::class);
+        return $this->hasMany(Buy_order::class);
     }
 
     public function sell_orders(){
-        return $this->hasMany(App\Sell_order::class);
+        return $this->hasMany(Sell_order::class);
     }
 
     public function income_out_operations(){
-        return $this->hasMany(App\Income_out_operation::class);
+        return $this->hasMany(Income_out_operation::class);
     }
 
     public function recharge_companies(){
-        return $this->hasMany(App\Recharge_company::class);
+        return $this->hasMany(Recharge_company::class);
     }
 
 }

@@ -140,31 +140,40 @@
             </ul>
         </aside>
 
-        <div class="row">
-            @if(Session('lang')=="ar")
-            <div class="col-xl-10 col-lg-9 col-md-8 mr-auto main-div1">
-                <div class="pt-md-5 mt-md-3">
-            @else
-            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div2">
-                <div class="pt-md-5 mt-md-3">
-            @endif
-                <div class="text-center mb-5" ></div>
-                    @yield('page_content')
-            </div>
-            </div>
-            </div>
 
-            <style>
-            #student_table_wrapper .row {
-            width: 100% !important;
-            margin: auto;
-            margin-left:7px;
-            }
-            </style>
+            <div class="container-fluid">
+                <div class="row">
+                    @if(Session('lang')=="ar")
+                    <div class="col-xl-10 col-lg-9 col-md-8 mr-auto main-div1">
+                        <div class="pt-md-5 mt-md-3">
+                    @else
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto main-div">
+                        <div class="pt-md-5 mt-md-3" >
+                    @endif
+                        <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
+                            <div style="margin-left: 15px">
+                                <h3>@yield('page_header')</h3>
+                            </div>
+                            <div>
+                                <button type="button" name="add" id="add_data" class="btn btn-success btn-xl mr-5">@yield('button_name')</button>
+                            </div>
+                        </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-            <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
 
+                        @yield('content')
+
+
+                        <style>
+                            #student_table_wrapper .row {
+                                width: 100% !important;
+                            }
+                        </style>
+
+                        @yield('foo')
+
+                        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="{{ asset('dashboard_files/js/main.js') }}"></script>
     </body>
 </html>
+

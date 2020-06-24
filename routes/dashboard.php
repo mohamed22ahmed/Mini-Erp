@@ -87,6 +87,11 @@ Route::prefix('dashboard')->group(function(){
 
     // Recharge Company Route
     Route::get('recharge_company','Recharge_companyController@index');
+    Route::post("recharge_company/insert",'Recharge_companyController@insert')->name('recharge_company_insert');
+    Route::get('recharge_company/edit/{id}','Recharge_companyController@edit');
+    Route::post("recharge_company/edit/{id}",'Recharge_companyController@update');
+    Route::get('recharge_company/delete/{id}','Recharge_companyController@del');
+    Route::get('recharge_company/active/{id}','Recharge_companyController@active');
 
     // Recharge Company Route
     Route::get('recharge_value','Recharge_valueController@index');
@@ -122,6 +127,25 @@ Route::prefix('dashboard')->group(function(){
 
     //product unit routes
     Route::get('product_unit','Product_unitController@index');
+
+// -------------------------------------------------------- Client & Provider Routes-----------------------------------
+    // client Routes
+    Route::get('client','ClientController@index');
+
+
+    // provider Routes
+    Route::get('provider','ProviderController@index');
+
+
+
+// ----------------------------------------------------------Mandoop and Delivery Routes -------------------------------
+    // mandoop Routes
+    Route::get('mandoop','MandoopController@index');
+
+
+    // delivery Routes
+    Route::get('delivery','DeliveryController@index');
+
 
 });
 Route::post('logout','DashboardController@logout');

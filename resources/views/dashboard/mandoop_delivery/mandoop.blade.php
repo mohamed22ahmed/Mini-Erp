@@ -1,6 +1,6 @@
 @extends('dashboard.layouts_pages.app')
 @section('title')
-    Product Colors
+    Mandoop
 @endsection
 
 @section('page_content')
@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title" style="float: left">
-                            <h4>Products Colors</h4>
+                            <h4>Mandoop</h4>
                         </div>
 
                         <div class="card-tools" style="float: right; margin-right:5px">
@@ -25,13 +25,23 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Color</th>
+                                    <th>Name</th>
+                                    <th>Branch</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Salary</th>
+                                    <th>Notes</th>
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td>oppo</td>
-                                    <td>red</td>
+                                    <td>Mohamed</td>
+                                    <td>Cairo</td>
+                                    <td>m@gmail.com</td>
+                                    <td>01112345678</td>
+                                    <td>assiut</td>
+                                    <td>3000</td>
+                                    <td>this for current client</td>
                                     <td>
                                         <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
                                         <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
@@ -58,20 +68,38 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="product_id">Select Product_ID</label>
-                            <select name="product_id" id="product_id" class="form-control">
+                            <label>Enter Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Email</label>
+                            <input type="email" name="email" id="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Address</label>
+                            <input type="text" name="address" id="address" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id" class="form-control">
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="color_id">Select Color_ID</label>
-                            <select name="color_id" id="color_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
+                            <label>Enter Salary</label>
+                            <input type="number" name="salary" id="salary" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Notes</label>
+                            <input type="text" name="notes" id="notes" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -84,4 +112,18 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#add_data').click(function(){
+                $('#sss').modal('show');
+                $('#student_form')[0].reset();
+                $('#form_output').html('');
+                $('#button_action').val('insert');
+                $('#action').val('Add');
+                $('.modal-title').text('Add Data');
+            });
+        });
+    </script>
 @endsection
