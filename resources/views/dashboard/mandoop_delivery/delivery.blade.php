@@ -27,24 +27,26 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th>Percentage</th>
+                                    <th>Salary</th>
                                     <th>Notes</th>
                                     <th>Action</th>
                                 </tr>
+                                @foreach ($deliveries as $delivery)
                                 <tr>
-                                    <td>Mohamed</td>
-                                    <td>Cairo</td>
-                                    <td>m@gmail.com</td>
-                                    <td>01112345678</td>
-                                    <td>assiut</td>
-                                    <td>20%</td>
-                                    <td>this for current client</td>
+                                    <td>{{ $delivery->name }}</td>
+                                    <td>{{ $delivery->branch->name }}</td>
+                                    <td>{{ $delivery->email }}</td>
+                                    <td>{{ $delivery->phone }}</td>
+                                    <td>{{ $delivery->address }}</td>
+                                    <td>{{ $delivery->salary }}</td>
+                                    <td>{{ $delivery->notes }}</td>
                                     <td>
-                                        <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                        <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                        <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
+                                        <a href="delivery/edit/{{ $delivery->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="delivery/delete/{{ $delivery->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                        <a href="delivery/active/{{ $delivery->id }}" class="btn btn-{{ $delivery->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $delivery->is_active=='1'?'Active':'Inactive'}}</a>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -55,7 +57,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('delivery_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -66,6 +68,14 @@
                         <div class="form-group">
                             <label>Enter Name</label>
                             <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Enter Email</label>
@@ -79,23 +89,13 @@
                             <label>Enter Address</label>
                             <input type="text" name="address" id="address" class="form-control" />
                         </div>
-
                         <div class="form-group">
-                            <label for="branch_id">Select Branch</label>
-                            <select name="branch_id" id="branch_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter Percentage</label>
-                            <input type="number" name="percentage" id="percentage" class="form-control" />
+                            <label>Enter Salary</label>
+                            <input type="number" name="salary" id="salary" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label>Enter Notes</label>
-                            <input type="text" name="notes" id="notes" class="form-control" />
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

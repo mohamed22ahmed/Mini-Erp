@@ -26,15 +26,19 @@
                                 <th>Color</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>oppo</td>
-                                <td>red</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($product_colors as $pr_cl)
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    {{--  <td>{{ $pr_cl->product->name }}</td>
+                                    <td>{{ $pr_cl->$color->name }}</td>  --}}
+
+                                    <td>
+                                        <a href="product_color/edit/{{ $pr_cl->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="product_color/delete/{{ $pr_cl->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -45,7 +49,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('product_color_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -54,19 +58,19 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="product_id">Select Product_ID</label>
+                            <label for="product_id">Select Product</label>
                             <select name="product_id" id="product_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="color_id">Select Color_ID</label>
+                            <label for="color_id">Select Color</label>
                             <select name="color_id" id="color_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach ($colors as $color)
+                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -80,4 +84,12 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#add_data').click(function(){
+                $('#sss').modal('show');
+            });
+        });
+    </script>
 @endsection

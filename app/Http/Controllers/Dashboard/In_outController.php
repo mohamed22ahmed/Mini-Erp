@@ -45,9 +45,9 @@ class In_outController extends Controller
         {
             if($request->get('button_action') == 'insert')
             {
-                $testName=Unit::where('name',$request->name)->first();
+                $testName=Income_out::where('name',$request->name)->first();
                 if(!$testName){
-                    $in_out=new In_out;
+                    $in_out=new Income_out;
                     $in_out->name=$request->name;
                     if($request->notes)
                         $in_out->notes=$request->notes;
@@ -61,7 +61,7 @@ class In_outController extends Controller
             if($request->get('button_action') == 'update'){
                 $isChanged = false;
                 if($in_out->name!=$request->name){
-                    $testName=in_out::where('name',$request->name)->first();
+                    $testName=Income_out::where('name',$request->name)->first();
                     if($testName){
                         array_push($error_array,'Data Exist');
                         $isChanged = true;

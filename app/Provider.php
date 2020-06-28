@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
     public function branch(){
-        return $this->belongsTo(App\Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 
     public function buy_orders(){
-        return $this->hasMany(App\Buy_order::class);
+        return $this->hasMany(Buy_order::class);
     }
 }

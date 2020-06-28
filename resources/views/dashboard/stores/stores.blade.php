@@ -20,6 +20,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div style="overflow-x:auto !important">
+
+
                     <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
                         <tbody>
                             <tr>
@@ -31,19 +33,22 @@
                                 <th>Notes</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>TStore</td>
-                                <td>Mohamed</td>
-                                <td>Cairo</td>
-                                <td>Abotig</td>
-                                <td>012345</td>
-                                <td>help help</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($stores as $store)
+                                <tr>
+                                    <td>{{ $store->name }}</td>
+                                    <td>{{ $store->admin->username }}</td>
+                                    <td>{{ $store->branch->name }}</td>
+                                    <td>{{ $store->address }}</td>
+                                    <td>{{ $store->phone }}</td>
+                                    <td>{{ $store->notes }}</td>
+                                    <td>
+                                        <a href="store/edit/{{ $store->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="store/delete/{{ $store->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                        <a href="store/active/{{ $store->id }}" class="btn btn-{{ $store->is_active == '1'? 'success':'danger'}}"><i fas fa-active></i>{{ $store->is_active == '1'? 'Active':'Inactive'}}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -55,7 +60,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('store_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -64,11 +69,19 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="Branch_id">Select Branch_ID</label>
-                            <select name="Branch_id" id="Branch_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="admin_id">Select User_ID</label>
+                            <select name="admin_id" id="admin_id" class="form-control">
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}">{{ $admin->username }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch_ID</label>
+                            <select name="branch_id" id="branch_id" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -77,23 +90,16 @@
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" name="value" id="address" class="form-control" />
+                            <input type="text" name="address" id="address" class="form-control" />
                         </div>
-                        <div class="form-group">
-                            <label for="user_id">Select User_ID</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
+
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label for="notes">write Notes</label>
-                            <textarea name="" id="notes" class="form-control" style="height:120px"></textarea>
+                            <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -112,11 +118,6 @@
 
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
                 });
             });
         </script>

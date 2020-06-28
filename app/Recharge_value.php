@@ -8,10 +8,10 @@ class Recharge_value extends Model
 {
 
     public function company(){
-        return $this->belongsTo(App\Company::class);
+        return $this->belongsTo(Recharge_company::class);
     }
 
     public function city(){
-        return $this->belongsTo(App\City::class);
+        return $this->belongsTo(City::class);
     }
 }

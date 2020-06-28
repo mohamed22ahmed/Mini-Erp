@@ -28,16 +28,17 @@
                                 <th>Amount</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>xx</td>
-                                <td>oppo</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($stroe_products as $st_pr)
+                                <tr>
+                                    <td>{{ $st_pr->store->name }}</td>
+                                    <td>{{ $st_pr->product->name }}</td>
+                                    <td>{{ $st_pr->amount }}</td>
+                                    <td>
+                                        <a href="store_products/edit/{{ $st_pr->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="store_products/delete/{{ $st_pr->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -49,7 +50,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('store_products_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -58,24 +59,24 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="trans_id">Select Transfere_ID</label>
-                            <select name="trans_id" id="trans_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="transfer_id">Select Transfer</label>
+                            <select name="transfer_id" id="transfer_id" class="form-control">
+                                @foreach ($transfers as $transfer)
+                                    <option value="{{ $transfer->id }}">{{ $transfer->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="pro_id">Select Product_ID</label>
-                            <select name="pro_id" id="pro_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="product_id">Select Product</label>
+                            <select name="product_id" id="product_id" class="form-control">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="amount">Amount</label>
-                            <input type="text" name="amount" id="amount" class="form-control" />
+                            <input type="number" name="amount" id="amount" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

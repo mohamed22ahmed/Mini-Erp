@@ -20,7 +20,7 @@ class CreateIncomeOutOperationsTable extends Migration
             $table->unsignedBigInteger('branch_id');
             $table->date('operation_date');
             $table->integer('value');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('type');
             $table->integer('is_confirmed')->default(0);
 

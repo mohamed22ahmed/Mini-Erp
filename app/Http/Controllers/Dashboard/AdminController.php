@@ -2,87 +2,83 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Admin;
+
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $admins= Admin::paginate(25);
-        if(!session('id'))
-            return redirect('dashboard/login');
+    public function index(){
+        $admins=Admin::all();
         return view('dashboard.administrator.admins',compact('admins'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function insert(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'branch_id'=>'required',
+            'address'=>'required',
+            'phone'=>'required|numeric',
+            'email'=>'required|email',
+            'client_type'=>'required'
+        ]);
+
+        $x=new Client;
+        $x->branch_id=$request->branch_id;
+        $x->name=$request->name;
+        $x->address=$request->address;
+        $x->phone=$request->phone;
+        $x->email=$request->email;
+        $x->user_type=$request->client_type;
+        if($request->client_type==2){
+            $x->expected_user_date=$request->exp_date;
+            $x->alert_after_hours=$request->alert_hours;
+        }
+        if($request->notes)
+            $x->notes=$request->notes;
+        $x->save();
+
+        return redirect('/dashboard/client');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function edit($id){
+        $record=Recharge_company::find($id);
+        return redirect('/dashboard/recharge_company',compact('record'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    function update(Request $request,$id){
+        $request->validate([
+            'branch_id'=>'required',
+            'name'=>'required|alpha',
+            'address'=>'required',
+            'phone'=>'required|numeric',
+            'email'=>'required|email'
+        ]);
+
+        $x=Recharge_company::find($id);
+        $x->branch_id=$request->branch_id;
+        $x->name=$request->name;
+        $x->address=$request->address;
+        $x->phone=$request->phone;
+        $x->email=$request->email;
+        $x->save();
+
+        return redirect('/dashboard/recharge_company');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function del($id){
+        Client::find($id)->delete();
+        return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function active($id){
+        $x=Client::find($id);
+        // dd($x);
+        if($x->is_active==1)
+            $x->is_active=0;
+        else
+            $x->is_active=1;
+        $x->save();
+        return redirect()->back();
     }
 }

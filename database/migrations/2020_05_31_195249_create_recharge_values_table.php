@@ -15,12 +15,12 @@ class CreateRechargeValuesTable extends Migration
     {
         Schema::create('recharge_values', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('Rec_company_id');
             $table->unsignedBigInteger('city_id');
             $table->integer('value');
             $table->string('notes')->nullable();
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('Rec_company_id')->references('id')->on('recharge_companies')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });

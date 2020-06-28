@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Store_transfer_product extends Model
 {
     public function product(){
-        return $this->belongsTo(App\Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function store(){
-        return $this->belongsTo(App\Store::class);
+        return $this->belongsTo(Store::class);
     }
 }

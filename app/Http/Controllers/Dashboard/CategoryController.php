@@ -20,9 +20,9 @@ class CategoryController extends Controller
         if(request()->ajax()){
             return Datatables::of($categories)
             ->addColumn('action', function($category){
-                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$category->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$category->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
-                    <a href="#" class="btn btn-xl btn-'.($category->is_active ?"success":"danger").' active" id="'.$category->id.'"><i class="glyphicon glyphicon-active"></i> '.($category->is_active ?"Active":"Inactive").'</a>';
+                return '<a href="#" class="btn btn-sm btn-primary edit" id="'.$category->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger delete" id="'.$category->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a href="#" class="btn btn-sm btn-'.($category->is_active ?"success":"danger").' active" id="'.$category->id.'"><i class="glyphicon glyphicon-active"></i> '.($category->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
         }

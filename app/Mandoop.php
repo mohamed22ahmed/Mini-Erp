@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Mandoop extends Model
 {
     public function branch(){
-        return $this->belongsTo(App\Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 
     public function sell_orders(){
-        return $this->hasMany(App\Sell_order::class);
+        return $this->hasMany(Sell_order::class);
     }
 }

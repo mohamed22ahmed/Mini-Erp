@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Branch;
@@ -11,7 +12,9 @@ use Validator;
 class BranchController extends Controller
 {
     function index(){
-        return view('dashboard.basics.branches');
+        $admins=Admin::all();
+        // dd($admins);
+        return view('dashboard.basics.branches',compact('admins'));
     }
 
     function getdata(){
@@ -20,9 +23,9 @@ class BranchController extends Controller
         if(request()->ajax()){
             return Datatables::of($branches)
             ->addColumn('action', function($branch){
-                return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
-                    <a href="#" class="btn btn-xl btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
+                return '<a href="#" class="btn btn-sm btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a href="#" class="btn btn-sm btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
         }
@@ -49,7 +52,11 @@ class BranchController extends Controller
                 $testName=Branch::where('name',$request->name)->first();
                 if(!$testName){
                     $branch=new Branch;
+                    $branch->admin_id=$request->admin_id;
                     $branch->name=$request->name;
+                    $branch->address = $request->address;
+                    $branch->phone = $request->phone;
+                    $branch->email = $request->email;
                     if($request->notes)
                         $branch->notes=$request->notes;
 
@@ -64,6 +71,13 @@ class BranchController extends Controller
             {
                 $branch = Branch::find($request->get('student_id'));
                 $isChanged = false;
+                if($branch->admin_id!=$request->admin_id){
+                    $testName=Branch::where('name',$request->name)->first();
+                    if($testName){
+                        array_push($error_array,'Data Exist');
+                        $isChanged = true;
+                    }
+                }
                 if($branch->name!=$request->name){
                     $testName=Branch::where('name',$request->name)->first();
                     if($testName){
@@ -73,7 +87,11 @@ class BranchController extends Controller
                 }
                 if(!$isChanged)
                 {
+                    $branch->admin_id=$request->admin_id;
                     $branch->name = $request->name;
+                    $branch->address = $request->address;
+                    $branch->phone = $request->phone;
+                    $branch->email = $request->email;
                     if($request->notes)
                         $branch->notes = $request->notes;
                     $branch->save();
@@ -108,7 +126,7 @@ class BranchController extends Controller
         $str=$branch->stores;
 
         if(count($str)){
-            echo "Error";
+            echo "This data can't be removed because it related with another data";
             return;
         }
 

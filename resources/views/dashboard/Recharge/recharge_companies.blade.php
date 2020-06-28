@@ -11,7 +11,7 @@
                 <h3>Recharge Companies</h3>
             </div>
             <div>
-                <button class="btn btn-success" id="add_data">
+                <button class="btn btn-success" id="add_data" onclick="{{ session()->forget('record') }}">
                     Add
                     <i class="fa fa-user-plus fa-fw"></i>
                 </button>
@@ -30,8 +30,11 @@
                                 <th>Email</th>
                                 <th>Action</th>
                             </tr>
+
                             @foreach ($rech_companies as $rec)
                                 <tr>
+
+                                    <input type="hidden" name="test" value="{{ $rec->id }}">
                                     <td>{{ $rec->branch->name }}</td>
                                     <td>{{ $rec->name }}</td>
                                     <td>{{ $rec->address }}</td>
@@ -62,6 +65,8 @@
                     </div>
                     <div class="modal-body">
                         @csrf
+
+                        <input type="hidden" value=" {{empty($r = session('record'))? " " : $r =  session('record')  }}" >
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>Select Branch ID</label>
@@ -73,19 +78,21 @@
                         </div>
                         <div class="form-group">
                             <label>Enter Name</label>
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control"
+                            value="{{empty($r->name)?'': $r->name}}">
+
                         </div>
                         <div class="form-group">
                             <label>Enter Address</label>
-                            <input type="text" name="address" id="address" class="form-control">
+                            <input type="text" name="address" id="address" class="form-control" value="{{ empty($r->address)?'': $r->address }}">
                         </div>
                         <div class="form-group">
                             <label>Enter Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control">
+                            <input type="text" name="phone" id="phone" class="form-control" value="{{ empty($r->phone)?'': $r->phone }}">
                         </div>
                         <div class="form-group">
                             <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control">
+                            <input type="email" name="email" id="email" class="form-control" value="{{ empty($r->email)?'': $r->email }}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -112,3 +119,4 @@
             });
         </script>
 @endsection
+

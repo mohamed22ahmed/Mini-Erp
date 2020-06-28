@@ -8,7 +8,7 @@
 <div class="container-fluid">
         <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
             <div style="margin-left: 15px">
-                <h3>Producys Units</h3>
+                <h3>Products Units</h3>
             </div>
             <div>
                 <button class="btn btn-success" id="add_data">
@@ -28,16 +28,19 @@
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>t-shirt</td>
-                                <td>kilo</td>
-                                <td>3000</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach($product_units as $pr_un)
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    {{--  <td>{{ $pr_un->product->name }}</td>
+                                    <td>{{ $pr_un->unit->name }}</td>  --}}
+                                    <td>{{ $pr_un->price }}</td>
+                                    <td>
+                                        <a href="product_unit/edit/{{ $pr_un->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="product_unit/delete/{{ $pr_un->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -49,7 +52,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('product_unit_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -58,24 +61,24 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label for="product_id">Select Product_ID</label>
+                            <label for="product_id">Select Product</label>
                             <select name="product_id" id="product_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="unit_id">Select Unit_ID</label>
+                            <label for="unit_id">Select Unit</label>
                             <select name="unit_id" id="unit_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach ($units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" name="price" id="price" class="form-control" />
+                            <input type="number" name="price" id="price" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

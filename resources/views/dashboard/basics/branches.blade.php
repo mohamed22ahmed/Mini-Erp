@@ -48,10 +48,10 @@
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>Select Admin</label>
-                            <select class="form-control"name="admin_id" id="admin_id">
-                                <option>Ahmed</option>
-                                <option>Mohamed</option>
-                                <option>Mahmoud</option>
+                            <select name="admin_id" id="admin_id" class="form-control">
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}">{{ $admin->username }}</option>
+                                @endforeach
                             </select>
 
                         </div>

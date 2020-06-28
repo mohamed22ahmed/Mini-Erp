@@ -35,9 +35,10 @@ class Recharge_companyController extends Controller
         return redirect('/dashboard/recharge_company');
     }
 
-    public function edit($id){
+    public function edit($id ,Request $request){
         $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
+        $request->session()->put('record',$record);
+        return redirect()->back();
     }
 
     function update(Request $request,$id){

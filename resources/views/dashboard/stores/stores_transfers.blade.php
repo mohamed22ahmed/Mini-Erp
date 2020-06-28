@@ -8,7 +8,7 @@
 <div class="container-fluid">
         <div class="text-center mb-5 mt-4 d-flex justify-content-between xoo" >
             <div style="margin-left: 15px">
-                <h3>Stores Transfere</h3>
+                <h3>Stores Transfer</h3>
             </div>
             <div>
                 <button class="btn btn-success" id="add_data">
@@ -30,18 +30,21 @@
                             <th>Date</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>Mohamed</td>
-                            <td>Cairo</td>
-                            <td>Assiut</td>
-                            <td>50</td>
-                            <td>20/2/2020</td>
-                            <td>
-                                <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                            </td>
-                        </tr>
+                        @foreach ($transfers as $transfer)
+                            <tr>
+                                <td>{{ $transfer->admin->username }}</td>
+                                <td></td>
+                                <td></td>
+                                {{--  <td>{{ $transfer->store->name}}</td>
+                                <td>{{ $transfer->store->name}}</td>  --}}
+                                <td>{{ $transfer->product_count}}</td>
+                                <td>{{ $transfer->transfer_date}}</td>
+                                <td>
+                                    <a href="store_transfer/edit/{{ $transfer->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                    <a href="store_transfer/delete/{{ $transfer->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -53,7 +56,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('store_transfer_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -62,38 +65,43 @@
                         {{csrf_field()}}
                         <span id="form_output"></span>
 
+
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="text" name="date" id="date" class="form-control" />
+                            <label for="admin_id">Select Admin</label>
+                            <select name="admin_id" id="admin_id" class="form-control">
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}">{{ $admin->username }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="from_id">From_Store_ID</label>
-                            <select name="from_id" id="from_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="from_store">From Store</label>
+                            <select name="from_store" id="from_store" class="form-control">
+                                @foreach ($stores as $store)
+                                    <option value="{{ $store->id }}">{{ $store->name }}</option>
+                                @endforeach
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="to_id">TO_Store_ID</label>
-                            <select name="to_id" id="to_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label for="to_store">To Store</label>
+                            <select name="to_store" id="to_store" class="form-control">
+                                @foreach ($stores as $store)
+                                    <option value="{{ $store->id }}">{{ $store->name }}</option>
+                                @endforeach
                             </select>
                         </div>
+
+
                         <div class="form-group">
-                            <label for="user_id">User_ID</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
+                            <label for="transfer_date">Transfer Date</label>
+                            <input type="date" name="transfer_date" id="transfer_date" class="form-control" />
                         </div>
+
                         <div class="form-group">
-                            <label for="pro-count">Product Count</label>
-                            <input type="text" name="product_count" id="pro-count" class="form-control" />
+                            <label for="product_count">Product Count</label>
+                            <input type="text" name="product_count" id="product_count" class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -112,11 +120,6 @@
 
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
                 });
             });
         </script>

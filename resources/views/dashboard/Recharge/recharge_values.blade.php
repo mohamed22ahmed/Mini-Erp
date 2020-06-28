@@ -23,25 +23,26 @@
                     <table class="table table-hover table-striped table-bordered text-center w-100 mobile-optimised">
                         <tbody>
                             <tr>
-                                <th>Branch</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
+                                <th>Company</th>
+                                <th>City</th>
+                                <th>Value</th>
+                                <th>Notes</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>Phones</td>
-                                <td>Mohamed</td>
-                                <td>Abotig</td>
-                                <td>012346</td>
-                                <td>m@gmail.com</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($rech_values as $rec)
+                                <tr>
+                                    <td></td>
+                                    {{-- {{ dd($rec->rec_company) }} --}}
+                                     {{-- <td>{{ $rec->rec_company->id }}</td> --}}
+                                    <td>{{ $rec->city->name }}</td>
+                                    <td>{{ $rec->value }}</td>
+                                    <td>{{ $rec->notes }}</td>
+                                    <td>
+                                        <a href="/dashboard/recharge_value/edit/{{ $rec->id }}" id="edit_data" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="/dashboard/recharge_value/delete/{{ $rec->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -53,46 +54,37 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('recharge_value_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        {{csrf_field()}}
+                        @csrf
                         <span id="form_output"></span>
                         <div class="form-group">
-                            <label>Select Company ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label>Select Company</label>
+                            <select name="company_id" id="company_id" class="form-control">
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Select Cities ID</label>
-                            <select name="admin_id" id="admin_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                            <label>Select City</label>
+                            <select name="city_id" id="city_id" class="form-control">
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Enter Value</label>
-                            <input type="text" name="value" id="value" class="form-control" />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Enter Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" />
+                            <input type="number" name="value" id="value" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>write Notes</label>
-                            <textarea name="" id="" class="form-control" style="height:120px"></textarea>
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -108,14 +100,13 @@
 
     <script type="text/javascript">
             $(document).ready(function() {
-
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
+                });
+
+                $('#edit_data').click(function(){
+                    $('#sss').modal('show');
+                    event.preventDefault()
                 });
             });
         </script>

@@ -30,19 +30,21 @@
                                 <th>Notes</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>Mohamed</td>
-                                <td>Cairo</td>
-                                <td>m@gmail.com</td>
-                                <td>01112345678</td>
-                                <td>assiut</td>
-                                <td>this for current client</td>
-                                <td>
-                                    <a href="ss/edit/id" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                    <a href="ss/active/id" class="btn btn-success"><i fas fa-active></i>Active</a>
-                                </td>
-                            </tr>
+                            @foreach ($providers as $provider)
+                                <tr>
+                                    <td>{{ $provider->name }}</td>
+                                    <td>{{ $provider->branch->name }}</td>
+                                    <td>{{ $provider->email }}</td>
+                                    <td>{{ $provider->phone }}</td>
+                                    <td>{{ $provider->address }}</td>
+                                    <td>{{ $provider->notes }}</td>
+                                    <td>
+                                        <a href="provider/edit/{{ $provider->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="provider/delete/{{ $provider->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
+                                        <a href="provider/active/{{ $provider->id }}" class="btn btn-{{ $provider->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $provider->is_active=='1'?'Active':'Inactive'}}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -53,7 +55,7 @@
     <div id="sss" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="student_form">
+                <form method="post" id="student_form" action="{{ route('provider_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -64,6 +66,14 @@
                         <div class="form-group">
                             <label>Enter Name</label>
                             <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Enter Email</label>
@@ -79,18 +89,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="branch_id">Select Branch</label>
-                            <select name="branch_id" id="branch_id" class="form-control">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>Enter Notes</label>
-                            <input type="text" name="notes" id="notes" class="form-control" />
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

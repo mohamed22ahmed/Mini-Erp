@@ -8,10 +8,10 @@ class City extends Model
 {
 
     public function recharge_values(){
-        return $this->hasMany(App\Recharge_value::class);
+        return $this->hasMany(Recharge_value::class);
     }
 
     public function sell_orders(){
-        return $this->hasMany(App\Sell_order::class);
+        return $this->hasMany(Sell_order::class);
     }
 }

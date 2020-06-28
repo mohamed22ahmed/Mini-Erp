@@ -99,7 +99,7 @@
                 <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-charging-station app-menu__icon"></i><span class="app-menu__label">Recharge</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="/dashboard/recharge_company"><i class="icon fas fa-hand-point-right"></i>Companies</a></li>
-                        <li><a class="treeview-item" href="/dashboard/companies"><i class="icon fas fa-hand-point-right"></i>Values</a></li>
+                        <li><a class="treeview-item" href="/dashboard/recharge_value"><i class="icon fas fa-hand-point-right"></i>Values</a></li>
                     </ul>
                 </li>
 

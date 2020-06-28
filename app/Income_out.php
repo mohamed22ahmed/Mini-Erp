@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Income_out extends Model
 {
     public function income_out_operations(){
-        return $this->hasMany(App\Income_out_operation::class);
+        return $this->hasMany(Income_out_operation::class);
     }
 }
