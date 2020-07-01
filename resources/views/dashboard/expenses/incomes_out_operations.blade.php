@@ -35,7 +35,6 @@
                                 </tr>
                                 @foreach ($exps as $item)
                                     <tr>
-                                        {{-- {{ dd($item) }} --}}
                                         <td>{{ $item->income_out->name }}</td>
                                         <td>{{ $item->branch->name }}</td>
                                         <td>{{ $item->admin->username }}</td>
