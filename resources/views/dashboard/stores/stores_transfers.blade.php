@@ -33,8 +33,8 @@
                         @foreach ($transfers as $transfer)
                             <tr>
                                 <td>{{ $transfer->admin->username }}</td>
-                                <td></td>
-                                <td></td>
+                                <td>Assiut store</td>
+                                <td>Cairo Store</td>
                                 {{--  <td>{{ $transfer->store->name}}</td>
                                 <td>{{ $transfer->store->name}}</td>  --}}
                                 <td>{{ $transfer->product_count}}</td>

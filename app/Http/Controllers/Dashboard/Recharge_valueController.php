@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class Recharge_valueController extends Controller
 {
     public function index(){
-        $rech_values=Recharge_value::all();
+        $rech_values=Recharge_value::with("rec_company")->get();
         $cities=City::all();
         $companies=Recharge_company::all();
         return view('dashboard.Recharge.recharge_values',compact('rech_values','cities','companies'));
@@ -42,6 +42,7 @@ class Recharge_valueController extends Controller
     }
 
     function update(Request $request,$id){
+        dd($request->all());
         $request->validate([
             'branch_id'=>'required',
             'name'=>'required|alpha',

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Recharge_value extends Model
 {
 
-    public function company(){
-        return $this->belongsTo(Recharge_company::class);
+    public function rec_company(){
+        return $this->belongsTo(Recharge_company::class,"Rec_company_id");
     }
 
     public function city(){

@@ -11,7 +11,7 @@
                 <h3>Recharge Values</h3>
             </div>
             <div>
-                <button class="btn btn-success" id="add_data">
+                <button class="btn btn-success" id="add_data"  data-toggle="modal" data-target="#myModal-add">
                     Add
                     <i class="fa fa-user-plus fa-fw"></i>
                 </button>
@@ -38,7 +38,55 @@
                                     <td>{{ $rec->value }}</td>
                                     <td>{{ $rec->notes }}</td>
                                     <td>
-                                        <a href="/dashboard/recharge_value/edit/{{ $rec->id }}" id="edit_data" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+     <a id="edit_data" data-toggle="modal" data-target="#myModal-{{$rec->id}}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+
+      <div class="modal fade" id="myModal-{{$rec->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+                <form method="post" id="student_form" action="{{ route('recharge_value_insert') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Add Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label>Select Company</label>
+                            <select name="company_id" id="company_id" class="form-control">
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Select City</label>
+                            <select name="city_id" id="city_id" class="form-control">
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Value</label>
+                            <input type="number" name="value" id="value" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="student_id" id="student_id" value="" />
+                        <input type="hidden" name="button_action" id="button_action" value="insert" />
+                        <input type="submit" name="submit" id="action" value="Add" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
                                         <a href="/dashboard/recharge_value/delete/{{ $rec->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                     </td>
                                 </tr>
@@ -51,9 +99,12 @@
     </div>
 
 
-    <div id="sss" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+
+
+    <div class="modal fade" id="myModal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
                 <form method="post" id="student_form" action="{{ route('recharge_value_insert') }}">
                     <div class="modal-header d-flex justify-content-between">
                             <h4 class="modal-title">Add Data</h4>
@@ -98,16 +149,4 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-            $(document).ready(function() {
-                $('#add_data').click(function(){
-                    $('#sss').modal('show');
-                });
-
-                $('#edit_data').click(function(){
-                    $('#sss').modal('show');
-                    event.preventDefault()
-                });
-            });
-        </script>
 @endsection

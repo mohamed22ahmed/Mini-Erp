@@ -82,11 +82,11 @@ Route::prefix('dashboard')->group(function(){
     Route::get('recharge_company/delete/{id}','Recharge_companyController@del');
     Route::get('recharge_company/active/{id}','Recharge_companyController@active');
 
-    // Recharge Company Route
+    // Recharge value Route
     Route::get('recharge_value','Recharge_valueController@index');
     Route::post("recharge_value/insert",'Recharge_valueController@insert')->name('recharge_value_insert');
     Route::get('recharge_value/edit/{id}','Recharge_valueController@edit');
-    Route::post("recharge_value/edit/{id}",'Recharge_valueController@update');
+    Route::post("recharge_value/edit/{id}",'Recharge_valueController@update')->name('recharge_value_update');
     Route::get('recharge_value/delete/{id}','Recharge_valueController@del');
     Route::get('recharge_value/active/{id}','Recharge_valueController@active');
 

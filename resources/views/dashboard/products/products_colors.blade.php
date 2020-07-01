@@ -28,10 +28,10 @@
                             </tr>
                             @foreach ($product_colors as $pr_cl)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    {{--  <td>{{ $pr_cl->product->name }}</td>
-                                    <td>{{ $pr_cl->$color->name }}</td>  --}}
+                                    <td>Oppo</td>
+                                    <td>Red</td>
+                                    {{-- <td>{{ $pr_cl->product->first->name }}</td>
+                                    <td>{{ $pr_cl->color->first->name }}</td> --}}
 
                                     <td>
                                         <a href="product_color/edit/{{ $pr_cl->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>

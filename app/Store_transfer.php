@@ -11,6 +11,6 @@ class Store_transfer extends Model
     }
 
     public function store(){
-        return $this->belongsTo(Store::class);
+        return $this->belongsTo(Store::class,"");
     }
 }

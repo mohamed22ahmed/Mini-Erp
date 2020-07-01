@@ -36,8 +36,8 @@
                             </tr>
                             @foreach ($product_discounts as $pr_ds)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Oppo</td>
+                                    <td>20%</td>
                                     {{--  <td>{{ $pr_ds->product->name }}</td>
                                     <td>{{ $pr_ds->discount->name }}</td>  --}}
                                     <td>

@@ -30,8 +30,8 @@
                             </tr>
                             @foreach($product_units as $pr_un)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Oppo</td>
+                                    <td>Kilo</td>
                                     {{--  <td>{{ $pr_un->product->name }}</td>
                                     <td>{{ $pr_un->unit->name }}</td>  --}}
                                     <td>{{ $pr_un->price }}</td>
