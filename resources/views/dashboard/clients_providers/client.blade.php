@@ -41,7 +41,11 @@
                                     <td>{{ $client->user_type=='1'?'Current':'Expected' }}</td>
                                     <td>{{ $client->notes }}</td>
                                     <td>
-                                        <a href="client/edit/{{ $client->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="#"
+                                            data-recObject="{{ json_encode($client) }}"
+                                            class="btn btn-primary edit-client-button ">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="client/delete/{{ $client->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                         <a href="client/active/{{ $client->id }}" class="btn btn-{{ $client->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $client->is_active=='1'?'Active':'Inactive'}}</a>
                                     </td>
@@ -98,10 +102,6 @@
                                 <option value="2" class="exp">Expected</option>
                             </select>
                         </div>
-
-
-
-
                         <!-- --  the 2 inputs placed under  this commit displays when the user_type is Expected  -- -->
 
                         <div class="form-group" id="hide" style="display:none">
@@ -115,11 +115,6 @@
                             </div>
 
                         </div>
-
-
-
-
-
                         <div class="form-group">
                             <label for="notes">write Notes</label>
                             <textarea name="notes" id="notes" class="form-control" style="height:120px"></textarea>
@@ -136,16 +131,99 @@
         </div>
     </div>
 
+    <div id="edit-client-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form1" action="{{ route('client_update') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{csrf_field()}}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label>Enter Name</label>
+                            <input type="text" name="name" id="name1" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id1" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Email</label>
+                            <input type="email" name="email" id="email1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Phone</label>
+                            <input type="text" name="phone" id="phone1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Address</label>
+                            <input type="text" name="address" id="address1" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="client_type">Select Client Type</label>
+                            <select name="client_type" id="sel1" class="form-control exp-class">
+                                <option value="1">Current</option>
+                                <option value="2" class="exp">Expected</option>
+                            </select>
+                        </div>
+                        <!-- --  the 2 inputs placed under  this commit displays when the user_type is Expected  -- -->
+
+                        <div class="form-group" id="hide1" style="display:none">
+                            <div class="form-group">
+                                <label>Expected Date</label>
+                                <input type="date" name="exp_date" id="exp_date1" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Alert Before Hours</label>
+                                <input type="number" name="alert_hours" id="alert_hours1" class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes1" class="form-control" style="height:120px"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" value="" />
+                        <input type="submit" name="submit" id="action1" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function() {
-
             $('#add_data').click(function(){
                 $('#sss').modal('show');
-                $('#student_form')[0].reset();
-                $('#form_output').html('');
-                $('#button_action').val('insert');
-                $('#action').val('Add');
-                $('.modal-title').text('Add Data');
+            });
+
+            $('.edit-client-button').click(function(e){
+                e.preventDefault()
+                let store = JSON.parse($(this).attr('data-recObject'))
+                console.log(store)
+                $('#name1').val(store.name)
+                $('#branch_id1').val(store.branch.id)
+                $('#email1').val(store.email)
+                $('#phone1').val(store.phone)
+                $('#address1').val(store.address)
+                $('#sel1').val(store.user_type)
+                $('#exp_date1').val(store.expected_user_date)
+                $('#alert_hours1').val(store.alert_after_hours)
+                $('#notes1').val(store.notes)
+                $('#id').val(store.id)
+                $('#edit-client-modal').modal('show');
             });
         });
     </script>

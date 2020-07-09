@@ -36,7 +36,11 @@
                                     <td>{{ $pr_un->unit->name }}</td>  --}}
                                     <td>{{ $pr_un->price }}</td>
                                     <td>
-                                        <a href="product_unit/edit/{{ $pr_un->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="#"
+                                            data-recObject="{{ json_encode($pr_un) }}"
+                                            class="btn btn-primary edit-product-color-button ">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="product_unit/delete/{{ $pr_un->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                     </td>
                                 </tr>
@@ -92,17 +96,63 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-            $(document).ready(function() {
+    <div id="edit-product-color-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form1" action="{{ route('product_unit_update') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{csrf_field()}}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label for="product_id">Select Product</label>
+                            <select name="product_id" id="product_id1" class="form-control">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit_id">Select Unit</label>
+                            <select name="unit_id" id="unit_id1" class="form-control">
+                                @foreach ($units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" id="price1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" value="" />
+                        <input type="submit" name="submit" id="action1" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                $('#add_data').click(function(){
-                    $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
-                });
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#add_data').click(function(){
+                $('#sss').modal('show');
             });
-        </script>
+
+            $('.edit-product-color-button').click(function(e){
+                e.preventDefault()
+                let store = JSON.parse($(this).attr('data-recObject'))
+                $('#unit_id1').val(store.unit_id)
+                $('#product_id1').val(store.product_id)
+                $('#price1').val(store.price)
+                $('#id').val(store.id)
+                $('#edit-product-color-modal').modal('show');
+            });
+        });
+    </script>
 @endsection

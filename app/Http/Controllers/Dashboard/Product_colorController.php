@@ -30,29 +30,18 @@ class Product_colorController extends Controller
         return redirect('/dashboard/product_color');
     }
 
-    public function edit($id){
-        $record=Product_color::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'product_id'=>'required',
+            'color_id'=>'required',
         ]);
 
-        $x=Product_color::find($id);
-        $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        $x=Product_color::find($request->id);
+        $x->product_id=$request->product_id;
+        $x->color_id=$request->color_id;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/product_color');
     }
 
     public function del($id){

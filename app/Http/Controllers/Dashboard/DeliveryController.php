@@ -40,29 +40,29 @@ class DeliveryController extends Controller
         return redirect('/dashboard/delivery');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
+            'name'=>'required',
             'branch_id'=>'required',
-            'name'=>'required|alpha',
             'address'=>'required',
             'phone'=>'required|numeric',
+            'salary'=>'required|numeric',
             'email'=>'required|email'
         ]);
 
-        $x=Recharge_company::find($id);
+        $x=Delivery::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
         $x->address=$request->address;
         $x->phone=$request->phone;
         $x->email=$request->email;
+        $x->salary=$request->salary;
+
+        if($request->notes)
+            $x->notes=$request->notes;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/delivery');
     }
 
     public function del($id){

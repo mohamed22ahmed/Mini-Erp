@@ -35,13 +35,7 @@ class Recharge_companyController extends Controller
         return redirect('/dashboard/recharge_company');
     }
 
-    public function edit($id ,Request $request){
-        $record=Recharge_company::find($id);
-        $request->session()->put('record',$record);
-        return redirect()->back();
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
             'branch_id'=>'required',
             'name'=>'required|alpha',
@@ -49,15 +43,14 @@ class Recharge_companyController extends Controller
             'phone'=>'required|numeric',
             'email'=>'required|email'
         ]);
-
-        $x=Recharge_company::find($id);
+        dd($request->all());
+        $x=Recharge_company::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
         $x->address=$request->address;
         $x->phone=$request->phone;
         $x->email=$request->email;
         $x->save();
-
         return redirect('/dashboard/recharge_company');
     }
 

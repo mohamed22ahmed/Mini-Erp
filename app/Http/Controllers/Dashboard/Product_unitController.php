@@ -16,6 +16,7 @@ class Product_unitController extends Controller
         $product_units=Product_unit::all();
         return view('dashboard.products.products_units',compact('product_units','products','units'));
     }
+
     public function insert(Request $request){
         $request->validate([
             'product_id'=>'required',
@@ -32,29 +33,20 @@ class Product_unitController extends Controller
         return redirect('/dashboard/product_unit');
     }
 
-    public function edit($id){
-        $record=Product_color::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'product_id'=>'required',
+            'unit_id'=>'required',
+            'price'=>'required|numeric'
         ]);
 
-        $x=Product_color::find($id);
-        $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        $x=Product_unit::find($request->id);
+        $x->product_id=$request->product_id;
+        $x->unit_id=$request->unit_id;
+        $x->price=$request->price;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/product_unit');
     }
 
     public function del($id){

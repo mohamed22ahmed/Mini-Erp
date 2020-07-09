@@ -33,29 +33,20 @@ class Store_productController extends Controller
         return redirect('/dashboard/store_products');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'transfer_id'=>'required',
+            'product_id'=>'required',
+            'amount'=>'required|numeric'
         ]);
 
-        $x=Recharge_company::find($id);
-        $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        $x=Store_transfer_product::find($request->id);
+        $x->store_id=$request->transfer_id;
+        $x->product_id=$request->product_id;
+        $x->amount=$request->amount;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/store_products');
     }
 
     public function del($id){

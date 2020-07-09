@@ -38,29 +38,26 @@ class StoreController extends Controller
         return redirect('/dashboard/store');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
     function update(Request $request,$id){
         $request->validate([
             'branch_id'=>'required',
+            'admin_id'=>'required',
             'name'=>'required',
             'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'phone'=>'required|numeric'
         ]);
 
-        $x=Recharge_company::find($id);
+        $x=Store::find($request->id);
         $x->branch_id=$request->branch_id;
+        $x->admin_id=$request->admin_id;
         $x->name=$request->name;
         $x->address=$request->address;
         $x->phone=$request->phone;
-        $x->email=$request->email;
+        if($request->notes)
+            $x->notes=$request->notes;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/store');
     }
 
     public function del($id){

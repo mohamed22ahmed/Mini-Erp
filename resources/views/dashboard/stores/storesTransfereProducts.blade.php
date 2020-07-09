@@ -34,7 +34,11 @@
                                     <td>{{ $st_pr->product->name }}</td>
                                     <td>{{ $st_pr->amount }}</td>
                                     <td>
-                                        <a href="store_products/edit/{{ $st_pr->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="#"
+                                            data-recObject="{{ json_encode($st_pr) }}"
+                                            class="btn btn-primary edit-store-product-button ">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="store_products/delete/{{ $st_pr->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                     </td>
                                 </tr>
@@ -90,16 +94,63 @@
         </div>
     </div>
 
+    <div id="edit-store-product-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form1" action="{{ route('store_products_update') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{csrf_field()}}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label for="transfer_id">Select Transfer</label>
+                            <select name="transfer_id" id="transfer_id1" class="form-control">
+                                @foreach ($transfers as $transfer)
+                                    <option value="{{ $transfer->id }}">{{ $transfer->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_id">Select Product</label>
+                            <select name="product_id" id="product_id1" class="form-control">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" name="amount" id="amount1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" value="" />
+                        <input type="submit" name="submit" id="action1" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
             $(document).ready(function() {
-
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
+                });
+
+                $('.edit-store-product-button').click(function(e){
+                    e.preventDefault()
+                    let store = JSON.parse($(this).attr('data-recObject'))
+                    console.log(store)
+                    $('#transfer_id1').val(store.store.id)
+                    $('#product_id1').val(store.product.id)
+                    $('#amount1').val(store.amount)
+                    $('#id').val(store.id)
+                    $('#edit-store-product-modal').modal('show');
                 });
             });
         </script>

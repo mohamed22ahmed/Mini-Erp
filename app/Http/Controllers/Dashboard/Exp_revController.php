@@ -21,14 +21,6 @@ class Exp_revController extends Controller
     }
 
     public function insert(Request $request){
-        // dd($request->all());
-//         "in_id" => "1"
-//   "branch_id" => "1"
-//   "admin_id" => "1"
-//   "operation_date" => "test Operation"
-//   "value" => "0"
-//   "type" => "in"
-//   "description" => null
         $request->validate([
             'in_id'=>'required',
             'branch_id'=>'required',
@@ -53,29 +45,28 @@ class Exp_revController extends Controller
         return redirect('/dashboard/exp_rev');
     }
 
-    public function edit($id){
-        $record=Income_out_operation::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
+            'in_id'=>'required',
             'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'admin_id'=>'required',
+            'operation_date'=>'required|date',
+            'type'=>'required',
+            'value'=>'required|numeric',
         ]);
 
-        $x=Income_out_operation::find($id);
+        $x=Income_out_operation::find($request->id);
+        $x->income_out_id=$request->in_id;
+        $x->admin_id=$request->admin_id;
         $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        $x->operation_date=$request->operation_date;
+        $x->value=$request->value;
+        $x->type=$request->type;
+        if($request->description)
+            $x->description=$request->description;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/exp_rev');
     }
 
     public function del($id){

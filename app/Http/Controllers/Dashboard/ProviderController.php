@@ -37,29 +37,26 @@ class ProviderController extends Controller
         return redirect('/dashboard/provider');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
+            'name'=>'required',
             'branch_id'=>'required',
-            'name'=>'required|alpha',
             'address'=>'required',
             'phone'=>'required|numeric',
             'email'=>'required|email'
         ]);
 
-        $x=Recharge_company::find($id);
+        $x=Provider::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
         $x->address=$request->address;
         $x->phone=$request->phone;
         $x->email=$request->email;
+        if($request->notes)
+            $x->notes=$request->notes;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/provider');
     }
 
     public function del($id){

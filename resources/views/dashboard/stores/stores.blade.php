@@ -42,7 +42,11 @@
                                     <td>{{ $store->phone }}</td>
                                     <td>{{ $store->notes }}</td>
                                     <td>
-                                        <a href="store/edit/{{ $store->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="#"
+                                            data-recObject="{{ json_encode($store) }}"
+                                            class="btn btn-primary edit-store-button ">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="store/delete/{{ $store->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                         <a href="store/active/{{ $store->id }}" class="btn btn-{{ $store->is_active == '1'? 'success':'danger'}}"><i fas fa-active></i>{{ $store->is_active == '1'? 'Active':'Inactive'}}</a>
                                     </td>
@@ -113,12 +117,80 @@
         </div>
     </div>
 
+    <div id="edit-store-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form1" action="{{ route('store_insert') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{csrf_field()}}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label for="admin_id">Select Admin</label>
+                            <select name="admin_id" id="admin_id1" class="form-control">
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}">{{ $admin->username }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="branch_id">Select Branch</label>
+                            <select name="branch_id" id="branch_id1" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address1" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">write Notes</label>
+                            <textarea name="notes" id="notes1" class="form-control" style="height:120px"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" value="" />
+                        <input type="submit" name="submit" id="action1" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
             $(document).ready(function() {
-
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
                 });
+            });
+
+            $('.edit-store-button').click(function(e){
+                e.preventDefault()
+                let store = JSON.parse($(this).attr('data-recObject'))
+                console.log(store)
+                $('#name1').val(store.name)
+                $('#branch_id1').val(store.branch_id)
+                $('#admin_id1').val(store.admin_id)
+                $('#address1').val(store.address)
+                $('#phone1').val(store.phone)
+                $('#notes1').val(store.notes)
+                $('#id').val(store.id)
+                $('#edit-store-modal').modal('show');
             });
         </script>
 @endsection

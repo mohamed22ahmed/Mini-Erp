@@ -36,30 +36,22 @@ class Recharge_valueController extends Controller
         return redirect('/dashboard/recharge_value');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
-        dd($request->all());
+    function update(Request $request){
         $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'company_id'=>'required',
+            'city_id'=>'required',
+            'value'=>'required'
         ]);
-
-        $x=Recharge_company::find($id);
-        $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        // dd($request->all());
+        $x=Recharge_value::find($request->id);
+        $x->Rec_company_id=(int)$request->company_id;
+        $x->city_id=(int)$request->city_id;
+        $x->value=$request->value;
+        if($request->notes)
+            $x->notes=$request->notes;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/recharge_value');
     }
 
     public function del($id){

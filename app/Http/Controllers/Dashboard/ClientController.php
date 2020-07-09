@@ -43,29 +43,32 @@ class ClientController extends Controller
         return redirect('/dashboard/client');
     }
 
-    public function edit($id){
-        $record=Recharge_company::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
+            'name'=>'required',
             'branch_id'=>'required',
-            'name'=>'required|alpha',
             'address'=>'required',
             'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'email'=>'required|email',
+            'client_type'=>'required'
         ]);
 
-        $x=Recharge_company::find($id);
+        $x=Client::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
         $x->address=$request->address;
         $x->phone=$request->phone;
         $x->email=$request->email;
+        $x->user_type=$request->client_type;
+        if($request->client_type==2){
+            $x->expected_user_date=$request->exp_date;
+            $x->alert_after_hours=$request->alert_hours;
+        }
+        if($request->notes)
+            $x->notes=$request->notes;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/client');
     }
 
     public function del($id){

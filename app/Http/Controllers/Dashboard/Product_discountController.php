@@ -30,29 +30,18 @@ class Product_discountController extends Controller
         return redirect('/dashboard/product_discount');
     }
 
-    public function edit($id){
-        $record=Product_color::find($id);
-        return redirect('/dashboard/recharge_company',compact('record'));
-    }
-
-    function update(Request $request,$id){
+    function update(Request $request){
         $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
+            'product_id'=>'required',
+            'discount_id'=>'required',
         ]);
 
-        $x=Product_color::find($id);
-        $x->branch_id=$request->branch_id;
-        $x->name=$request->name;
-        $x->address=$request->address;
-        $x->phone=$request->phone;
-        $x->email=$request->email;
+        $x=Product_discount::find($request->id);
+        $x->product_id=$request->product_id;
+        $x->discount_id=$request->discount_id;
         $x->save();
 
-        return redirect('/dashboard/recharge_company');
+        return redirect('/dashboard/product_discount');
     }
 
     public function del($id){

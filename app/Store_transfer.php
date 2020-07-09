@@ -10,7 +10,11 @@ class Store_transfer extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function store(){
-        return $this->belongsTo(Store::class,"");
+    public function toStore(){
+        return $this->belongsTo(Store::class,"to_store");
+    }
+
+    public function fromStore(){
+        return $this->belongsTo(Store::class,"from_store");
     }
 }

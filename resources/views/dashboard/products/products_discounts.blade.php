@@ -41,7 +41,11 @@
                                     {{--  <td>{{ $pr_ds->product->name }}</td>
                                     <td>{{ $pr_ds->discount->name }}</td>  --}}
                                     <td>
-                                        <a href="product_discount/edit/{{ $pr_ds->id }}" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="#"
+                                            data-recObject="{{ json_encode($pr_ds) }}"
+                                            class="btn btn-primary edit-product-color-button ">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="product_discount/delete/{{ $pr_ds->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                     </td>
                                 </tr>
@@ -93,16 +97,58 @@
         </div>
     </div>
 
+    <div id="edit-product-color-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form1" action="{{ route('product_discount_update') }}">
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">Update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{csrf_field()}}
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label for="product_id">Select Product</label>
+                            <select name="product_id" id="product_id1" class="form-control">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="discount_id">Select Discount</label>
+                            <select name="discount_id" id="discount_id1" class="form-control">
+                                @foreach ($discounts as $discount)
+                                    <option value="{{ $discount->id }}">{{ $discount->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" value="" />
+                        <input type="submit" name="submit" id="action1" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
             $(document).ready(function() {
-
                 $('#add_data').click(function(){
                     $('#sss').modal('show');
-                    $('#student_form')[0].reset();
-                    $('#form_output').html('');
-                    $('#button_action').val('insert');
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
+                });
+
+                $('.edit-product-color-button').click(function(e){
+                    e.preventDefault()
+                    let store = JSON.parse($(this).attr('data-recObject'))
+                    console.log(store)
+                    $('#discount_id1').val(store.discount_id)
+                    $('#product_id1').val(store.product_id)
+                    $('#id').val(store.id)
+                    $('#edit-product-color-modal').modal('show');
                 });
             });
         </script>

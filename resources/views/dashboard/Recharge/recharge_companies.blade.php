@@ -11,7 +11,7 @@
                 <h3>Recharge Companies</h3>
             </div>
             <div>
-                <button class="btn btn-success" id="add_data" onclick="{{ session()->forget('record') }}">
+                <button class="btn btn-success" id="add_data">
                     Add
                     <i class="fa fa-user-plus fa-fw"></i>
                 </button>
@@ -41,7 +41,12 @@
                                     <td>{{ $rec->phone }}</td>
                                     <td>{{ $rec->email }}</td>
                                     <td>
-                                        <a href="/dashboard/recharge_company/edit/{{ $rec->id }}" id="edit_data" class="btn btn-primary"><i fas fa-edit></i>Edit</a>
+                                        <a href="/dashboard/recharge_company/update"
+                                            data-recObject="{{ json_encode($rec) }}"
+                                            data-recObjectBranch="{{ json_encode($rec->branch) }}"
+                                            class="btn btn-primary edit-rec-company-button">
+                                            <i fas fa-edit></i>Edit
+                                        </a>
                                         <a href="/dashboard/recharge_company/delete/{{ $rec->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                         <a href="/dashboard/recharge_company/active/{{ $rec->id }}" class="btn {{ $rec->is_active==1?'btn-success':'btn-danger' }}"><i fas fa-active></i>{{ $rec->is_active==1?'Active':'Inactive' }}</a>
                                     </td>
@@ -65,8 +70,6 @@
                     </div>
                     <div class="modal-body">
                         @csrf
-
-                        <input type="hidden" value=" {{empty($r = session('record'))? " " : $r =  session('record')  }}" >
                         <span id="form_output"></span>
                         <div class="form-group">
                             <label>Select Branch ID</label>
@@ -78,21 +81,20 @@
                         </div>
                         <div class="form-group">
                             <label>Enter Name</label>
-                            <input type="text" name="name" id="name" class="form-control"
-                            value="{{empty($r->name)?'': $r->name}}">
+                            <input type="text" name="name" id="name" class="form-control">
 
                         </div>
                         <div class="form-group">
                             <label>Enter Address</label>
-                            <input type="text" name="address" id="address" class="form-control" value="{{ empty($r->address)?'': $r->address }}">
+                            <input type="text" name="address" id="address" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Enter Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" value="{{ empty($r->phone)?'': $r->phone }}">
+                            <input type="text" name="phone" id="phone" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{ empty($r->email)?'': $r->email }}">
+                            <input type="email" name="email" id="email" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -106,17 +108,71 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-            $(document).ready(function() {
-                $('#add_data').click(function(){
-                    $('#sss').modal('show');
-                });
+    <div id="edit-rec-company-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="student_form" action="{{ route('recharge_company_update') }}">
+                    @csrf
+                    <div class="modal-header d-flex justify-content-between">
+                            <h4 class="modal-title">update Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <span id="form_output"></span>
+                        <div class="form-group">
+                            <label>Select Branch</label>
+                            <select name="branch_id" id="edit-rec-company-branch-id" class="form-control">
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Name</label>
+                            <input type="text" name="name" id="edit-rec-company-name" class="form-control">
 
-                $('#edit_data').click(function(){
-                    $('#sss').modal('show');
-                    event.preventDefault()
-                });
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Address</label>
+                            <input type="text" name="address" id="edit-rec-company-address" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Phone</label>
+                            <input type="text" name="phone" id="edit-rec-company-phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Email</label>
+                            <input type="email" name="email" id="edit-rec-company-email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="edit-rec-company-id">
+                        <input type="submit" name="submit" id="action" value="Save" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#add_data').click(function(){
+                $('#sss').modal('show');
             });
-        </script>
+
+            $('.edit-rec-company-button').click(function(e){
+                e.preventDefault()
+                let rec_company = JSON.parse($(this).attr('data-recObject'))
+                let rec_branch = JSON.parse($(this).attr('data-recObjectBranch'))
+                $('#edit-rec-company-branch-id').val(rec_branch.id)
+                $('#edit-rec-company-name').val(rec_company.name)
+                $('#edit-rec-company-address').val(rec_company.address)
+                $('#edit-rec-company-phone').val(rec_company.phone)
+                $('#edit-rec-company-email').val(rec_company.email)
+                $('#edit-rec-company-id').val(rec_company.id)
+                $('#edit-rec-company-modal').modal('show');
+            });
+        });
+    </script>
 @endsection
 
