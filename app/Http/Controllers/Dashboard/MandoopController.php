@@ -6,7 +6,8 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Mandoop;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\MandoopInsert;
+use App\Http\Requests\Dashboard\MandoopUpdate;
 class MandoopController extends Controller
 {
     public function index(){
@@ -15,16 +16,7 @@ class MandoopController extends Controller
         return view('dashboard.mandoop_delivery.mandoop',compact('branches','mandoops'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'percentage'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-
+    public function insert(MandoopInsert $request){
         $x=new Mandoop;
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
