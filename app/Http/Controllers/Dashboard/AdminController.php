@@ -6,7 +6,7 @@ use App\Admin;
 use App\Branch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\AdminInsert;
 class AdminController extends Controller
 {
     public function index(){
@@ -15,15 +15,7 @@ class AdminController extends Controller
         return view('dashboard.administrator.admins',compact('admins','branches'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'name'=>'required',
-            // 'branch_id'=>'required',
-            'password'=>'required',
-            'email'=>'required|email',
-            'admin_type'=>'required'
-        ]);
-
+    public function insert(AdminInsert $request){
         $x=new Admin;
         // $x->branch_id=$request->branch_id;
         $x->username=$request->name;
