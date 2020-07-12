@@ -6,7 +6,8 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Recharge_company;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\RechargeCompanyInsert;
+use App\Http\Requests\Dashboard\RechargeCompanyUpdate;
 class Recharge_companyController extends Controller
 {
     public function index(){
@@ -15,14 +16,7 @@ class Recharge_companyController extends Controller
         return view('dashboard.Recharge.recharge_companies',compact('rech_companies','branches'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
+    public function insert(RechargeCompanyInsert $request){
 
         $x=new Recharge_company;
         $x->branch_id=$request->branch_id;
