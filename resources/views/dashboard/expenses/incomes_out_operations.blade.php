@@ -48,7 +48,6 @@
                                                 class="btn btn-primary edit-operations-button btn-sm">
                                                 <i fas fa-edit></i>Edit
                                             </a>
-                                            <a href="exp_rev/delete/{{ $item->id }}" class="btn btn-danger btn-sm"><i fas fa-delete></i>Delete</a>
                                             <a href="exp_rev/active/{{ $item->id }}" class="btn {{ $item->is_confirmed == '1'? 'btn-success':'btn-danger'}} btn-sm"><i fas fa-active></i>{{ $item->is_confirmed == '0'?'Not Confirmed':'Confirmed' }}</a>
                                         </td>
                                     </tr>

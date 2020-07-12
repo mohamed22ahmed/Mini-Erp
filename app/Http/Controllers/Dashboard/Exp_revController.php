@@ -21,7 +21,7 @@ class Exp_revController extends Controller
     }
 
     public function insert(ExpRevInsert $request){
-        $x=new Income_out_operation;
+        $x= new Income_out_operation;
         $x->income_out_id=$request->in_id;
         $x->admin_id=$request->admin_id;
         $x->branch_id=$request->branch_id;
