@@ -8,6 +8,7 @@ use App\Store;
 use App\Store_transfer_product;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\StoreProductInsert;
+use App\Http\Requests\Dashboard\StoreProductUpdate;
 class Store_productController extends Controller
 {
     public function index(){
@@ -27,13 +28,7 @@ class Store_productController extends Controller
         return redirect('/dashboard/store_products');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'transfer_id'=>'required',
-            'product_id'=>'required',
-            'amount'=>'required|numeric'
-        ]);
-
+    function update(StoreProductUpdate $request){
         $x=Store_transfer_product::find($request->id);
         $x->store_id=$request->transfer_id;
         $x->product_id=$request->product_id;
