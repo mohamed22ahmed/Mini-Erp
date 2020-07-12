@@ -7,6 +7,7 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\AdminInsert;
+use App\Http\Requests\Dashboard\AdminUpdate;
 class AdminController extends Controller
 {
     public function index(){
@@ -27,15 +28,7 @@ class AdminController extends Controller
         return redirect('/dashboard/admins');
     }
 
-    function update(Request $request){
-        // dd($request->all());
-        $request->validate([
-            'name'=>'required',
-            // 'branch_id'=>'required',
-            // 'password'=>'required',
-            'email'=>'required|email',
-            'admin_type'=>'required'
-        ]);
+    function update(AdminUpdate $request){
 
         $x=Admin::find($request->id);
         // $x->branch_id=$request->branch_id;
