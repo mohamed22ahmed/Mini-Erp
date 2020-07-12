@@ -8,7 +8,7 @@ use App\Recharge_company;
 use App\Recharge_value;
 use App\Company;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\RechargeValueInsert;
 class Recharge_valueController extends Controller
 {
     public function index(){
@@ -19,12 +19,6 @@ class Recharge_valueController extends Controller
     }
 
     public function insert(Request $request){
-        $request->validate([
-            'company_id'=>'required',
-            'city_id'=>'required',
-            'value'=>'required'
-        ]);
-        // dd($request->all());
         $x=new Recharge_value;
         $x->Rec_company_id=(int)$request->company_id;
         $x->city_id=(int)$request->city_id;

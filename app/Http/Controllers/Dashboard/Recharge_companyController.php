@@ -28,7 +28,7 @@ class Recharge_companyController extends Controller
         return redirect('/dashboard/recharge_company');
     }
 
-    function update(Request $request){
+    function update(RechargeCompanyUpdate $request){
         $x=Recharge_company::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
@@ -46,7 +46,6 @@ class Recharge_companyController extends Controller
 
     public function active($id){
         $x=Recharge_company::find($id);
-        // dd($x);
         if($x->is_active==1)
             $x->is_active=0;
         else
