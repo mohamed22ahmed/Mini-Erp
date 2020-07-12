@@ -20,7 +20,6 @@ class UnitController extends Controller
             return Datatables::of($units)
             ->addColumn('action', function($unit){
                 return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$unit->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$unit->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                     <a href="#" class="btn btn-xl btn-'.($unit->is_active ?"success":"danger").' active" id="'.$unit->id.'"><i class="glyphicon glyphicon-active"></i> '.($unit->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
