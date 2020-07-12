@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Store;
 use App\Store_transfer;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\StoreTransferInsert;
 class Store_transferController extends Controller
 {
     public function index(){
@@ -17,15 +17,7 @@ class Store_transferController extends Controller
         return view('dashboard.stores.stores_transfers',compact('admins','stores','transfers'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'admin_id'=>'required',
-            'from_store'=>'required',
-            'to_store'=>'required',
-            'transfer_date'=>'required|date',
-            'product_count'=>'required|numeric'
-        ]);
-
+    public function insert(StoreTransferInsert $request){
         $x=new Store_transfer;
         $x->admin_id=$request->admin_id;
         $x->from_store=$request->from_store;
