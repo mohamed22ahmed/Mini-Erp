@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Product_discount;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\ProductDicountInsert;
 class Product_discountController extends Controller
 {
     public function index(){
@@ -17,10 +17,6 @@ class Product_discountController extends Controller
         return view('dashboard.products.products_discounts',compact('product_discounts','products','discounts'));
     }
     public function insert(Request $request){
-        $request->validate([
-            'product_id'=>'required',
-            'discount_id'=>'required',
-        ]);
 
         $x=new Product_discount;
         $x->product_id=$request->product_id;
