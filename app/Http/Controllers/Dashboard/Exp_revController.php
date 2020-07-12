@@ -9,6 +9,7 @@ use App\Income_out;
 use App\Income_out_operation;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\ExpRevInsert;
+use App\Http\Requests\Dashboard\ExpRevUpdate;
 class Exp_revController extends Controller
 {
     public function index(){
@@ -35,15 +36,6 @@ class Exp_revController extends Controller
     }
 
     function update(Request $request){
-        $request->validate([
-            'in_id'=>'required',
-            'branch_id'=>'required',
-            'admin_id'=>'required',
-            'operation_date'=>'required|date',
-            'type'=>'required',
-            'value'=>'required|numeric',
-        ]);
-
         $x=Income_out_operation::find($request->id);
         $x->income_out_id=$request->in_id;
         $x->admin_id=$request->admin_id;
