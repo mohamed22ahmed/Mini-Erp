@@ -12,8 +12,7 @@ use Validator;
 class BranchController extends Controller
 {
     function index(){
-        $admins=Admin::all();
-        // dd($admins);
+        $admins = Admin::all();
         return view('dashboard.basics.branches',compact('admins'));
     }
 

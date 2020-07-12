@@ -41,11 +41,9 @@ class DashboardController extends Controller
             'email'=>'required|email'
         ]);
         session()->put('forget_email',$request->email);
-        //sending message
         $code=sprintf("%06d", mt_rand(1, 999999));
         session()->put('code',$code);
         $data=['name'=>'Mohamed','email'=>'memo@gmail.com','code'=>$code];
-        // dd($data);
         Mail::to('mohammedahmedhammam113@gmail.com')->send(new ContactFormMail($data));
         return redirect('/dashboard/code');
     }
