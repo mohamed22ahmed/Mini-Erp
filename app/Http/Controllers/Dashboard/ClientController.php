@@ -7,6 +7,7 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\ClientInsert;
+use App\Http\Requests\Dashboard\ClientUpdate;
 class ClientController extends Controller
 {
     public function index(){
@@ -35,7 +36,7 @@ class ClientController extends Controller
         return redirect('/dashboard/client');
     }
 
-    function update(Request $request){
+    function update(ClientUpdate $request){
 
         $x=Client::find($request->id);
         $x->branch_id=$request->branch_id;

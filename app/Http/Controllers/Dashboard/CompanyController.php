@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use validator;
 use App\Company;
-
+use App\Http\Requests\Dashboard\CompanyUpdate;
 class CompanyController extends Controller
 {
     public function index(){
@@ -16,14 +16,6 @@ class CompanyController extends Controller
     }
 
     public function update(Request $request){
-        $request->validate([
-            'name'=>'required|alpha_num',
-            'phone'=>'required',
-            'email'=>'required|email',
-            'trad_id'=>'required|alpha_num',
-            'tax_id'=>'required|alpha_num',
-        ]);
-
         $company=Company::first();
         $company->name=$request->name;
         $company->phone=$request->phone;

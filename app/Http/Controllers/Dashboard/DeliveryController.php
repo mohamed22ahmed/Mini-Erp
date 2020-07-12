@@ -6,7 +6,7 @@ use App\Branch;
 use App\Delivery;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\CompanyUpdate;
 class DeliveryController extends Controller
 {
     public function index(){
