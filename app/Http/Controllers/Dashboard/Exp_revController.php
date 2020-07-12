@@ -8,8 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Income_out;
 use App\Income_out_operation;
 use Illuminate\Http\Request;
-
-
+use App\Http\Requests\Dashboard\ExpRevInsert;
 class Exp_revController extends Controller
 {
     public function index(){
@@ -20,17 +19,7 @@ class Exp_revController extends Controller
         return view('dashboard.expenses.incomes_out_operations',compact('exps','in_out','branches','admins'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'in_id'=>'required',
-            'branch_id'=>'required',
-            'admin_id'=>'required',
-
-            'operation_date'=>'required|date',
-            'type'=>'required',
-            'value'=>'required|numeric',
-        ]);
-        // dd($request->all());
+    public function insert(ExpRevInsert $request){
         $x=new Income_out_operation;
         $x->income_out_id=$request->in_id;
         $x->admin_id=$request->admin_id;
