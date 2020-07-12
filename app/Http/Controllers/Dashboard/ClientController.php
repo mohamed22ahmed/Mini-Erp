@@ -36,14 +36,6 @@ class ClientController extends Controller
     }
 
     function update(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email',
-            'client_type'=>'required'
-        ]);
 
         $x=Client::find($request->id);
         $x->branch_id=$request->branch_id;
