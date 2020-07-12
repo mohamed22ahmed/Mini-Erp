@@ -7,6 +7,7 @@ use App\Product;
 use App\Product_unit;
 use App\Unit;
 use Illuminate\Http\Request;
+use App\Http\Requests\Dashboard\ProductUnitInsert;
 
 class Product_unitController extends Controller
 {
