@@ -22,7 +22,6 @@ class BranchController extends Controller
             return Datatables::of($branches)
             ->addColumn('action', function($branch){
                 return '<a href="#" class="btn btn-sm btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-
                     <a href="#" class="btn btn-sm btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
