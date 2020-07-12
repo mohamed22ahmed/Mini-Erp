@@ -10,7 +10,12 @@
 
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-exchange-alt app-menu__icon"></i><span class="app-menu__label">@lang('dashboard.basics')</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-            <li><a class="treeview-item" href="{{route('branches.index')}}"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.branches')</a></li>
+            <li>
+                <a class="treeview-item" href="{{route('branches.index')}}">
+                    <i class="icon fas fa-hand-point-right"></i>
+                    @lang('dashboard.branches')
+                </a>
+            </li>
                 <li><a class="treeview-item" href="/dashboard/categories"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.categories')</a></li>
                 <li><a class="treeview-item" href="/dashboard/colors"><i class="icon fas fa-hand-point-right"></i>@lang('dashboard.colors')</a></li>
                 <li><a class="treeview-item" href="/dashboard/units"><i class="icon fas fa-hand-point-right"></i> @lang('dashboard.units')</a></li>
