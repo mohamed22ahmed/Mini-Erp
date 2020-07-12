@@ -20,7 +20,6 @@ class In_outController extends Controller
             return Datatables::of($in_outs)
             ->addColumn('action', function($in_out){
                 return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$in_out->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$in_out->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                     <a href="#" class="btn btn-xl btn-'.($in_out->is_active ?"success":"danger").' active" id="'.$in_out->id.'"><i class="glyphicon glyphicon-active"></i> '.($in_out->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);
