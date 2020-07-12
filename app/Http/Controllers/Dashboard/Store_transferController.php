@@ -8,6 +8,7 @@ use App\Store;
 use App\Store_transfer;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\StoreTransferInsert;
+use App\Http\Requests\Dashboard\StoreTransferUpdate;
 class Store_transferController extends Controller
 {
     public function index(){
@@ -29,14 +30,7 @@ class Store_transferController extends Controller
         return redirect('/dashboard/store_transfer');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'admin_id'=>'required',
-            'from_store'=>'required',
-            'to_store'=>'required',
-            'transfer_date'=>'required|date',
-            'product_count'=>'required|numeric'
-        ]);
+    function update(StoreTransferUpdate $request){
         $x=Store_transfer::find($request->id);
         $x->admin_id=$request->admin_id;
         $x->from_store=$request->from_store;
