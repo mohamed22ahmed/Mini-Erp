@@ -17,7 +17,6 @@ class Recharge_companyController extends Controller
     }
 
     public function insert(RechargeCompanyInsert $request){
-
         $x=new Recharge_company;
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
@@ -30,14 +29,6 @@ class Recharge_companyController extends Controller
     }
 
     function update(Request $request){
-        $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-        dd($request->all());
         $x=Recharge_company::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
