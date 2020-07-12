@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Provider;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\ProviderInsert;
+use App\Http\Requests\Dashboard\ProviderUpdate;
 class ProviderController extends Controller
 {
     public function index(){
@@ -29,15 +30,7 @@ class ProviderController extends Controller
         return redirect('/dashboard/provider');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-
+    function update(ProviderUpdate $request){
         $x=Provider::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
