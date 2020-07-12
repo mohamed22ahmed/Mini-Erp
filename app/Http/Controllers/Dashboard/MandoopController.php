@@ -32,15 +32,7 @@ class MandoopController extends Controller
         return redirect('/dashboard/mandoop');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'percentage'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
+    function update(MandoopUpdate $request){
 
         $x=Mandoop::find($request->id);
         $x->branch_id=$request->branch_id;
