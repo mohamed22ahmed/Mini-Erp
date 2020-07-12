@@ -8,7 +8,6 @@ use App\City;
 use DataTables;
 use Validator;
 
-
 class CityController extends Controller
 {
     function index(){

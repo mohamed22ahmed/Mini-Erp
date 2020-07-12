@@ -7,6 +7,7 @@ use App\Delivery;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Dashboard\DeliveryInsert;
+use App\Http\Requests\Dashboard\DeliveryUpdate;
 class DeliveryController extends Controller
 {
     public function index(){
@@ -15,15 +16,7 @@ class DeliveryController extends Controller
         return view('dashboard.mandoop_delivery.delivery',compact('branches','deliveries'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'salary'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
+    public function insert(DeliveryInsert $request){
 
         $x=new Delivery;
         $x->branch_id=$request->branch_id;
@@ -40,16 +33,7 @@ class DeliveryController extends Controller
         return redirect('/dashboard/delivery');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'salary'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-
+    function update(DeliveryUpdate $request){
         $x=Delivery::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;

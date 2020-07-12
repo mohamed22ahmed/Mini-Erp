@@ -15,7 +15,7 @@ class CompanyController extends Controller
         return view('dashboard.administrator.company_info',compact('data'));
     }
 
-    public function update(Request $request){
+    public function update(CompanyUpdate $request){
         $company=Company::first();
         $company->name=$request->name;
         $company->phone=$request->phone;
