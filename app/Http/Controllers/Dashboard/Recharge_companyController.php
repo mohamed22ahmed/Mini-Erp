@@ -6,7 +6,8 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Recharge_company;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\RechargeCompanyInsert;
+use App\Http\Requests\Dashboard\RechargeCompanyUpdate;
 class Recharge_companyController extends Controller
 {
     public function index(){
@@ -15,15 +16,7 @@ class Recharge_companyController extends Controller
         return view('dashboard.Recharge.recharge_companies',compact('rech_companies','branches'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-
+    public function insert(RechargeCompanyInsert $request){
         $x=new Recharge_company;
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
@@ -35,15 +28,7 @@ class Recharge_companyController extends Controller
         return redirect('/dashboard/recharge_company');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'branch_id'=>'required',
-            'name'=>'required|alpha',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email'
-        ]);
-        dd($request->all());
+    function update(RechargeCompanyUpdate $request){
         $x=Recharge_company::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->name=$request->name;
@@ -61,7 +46,6 @@ class Recharge_companyController extends Controller
 
     public function active($id){
         $x=Recharge_company::find($id);
-        // dd($x);
         if($x->is_active==1)
             $x->is_active=0;
         else

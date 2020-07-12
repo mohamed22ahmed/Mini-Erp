@@ -8,7 +8,6 @@ use App\Category;
 use DataTables;
 use Validator;
 
-
 class CategoryController extends Controller
 {
     function index(){

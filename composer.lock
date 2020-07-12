@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b61195aaa2ce630f9d34e95b68bdf35f",
+    "content-hash": "184117df625f8118c9865b394b7bbcef",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4031,6 +4031,7 @@
         },
         {
             "name": "mockery/mockery",
+<<<<<<< HEAD
             "version": "1.3.2",
             "source": {
                 "type": "git",
@@ -4041,6 +4042,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/mockery/mockery/zipball/9b6f117dd7d36dc3858d8d8ddf9b3d584fcae283",
                 "reference": "9b6f117dd7d36dc3858d8d8ddf9b3d584fcae283",
+=======
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mockery/mockery.git",
+                "reference": "f69bbde7d7a75d6b2862d9ca8fab1cd28014b4be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/f69bbde7d7a75d6b2862d9ca8fab1cd28014b4be",
+                "reference": "f69bbde7d7a75d6b2862d9ca8fab1cd28014b4be",
+>>>>>>> afbb3f9c704c1c4cfb1cac8b557d66736aa15541
                 "shasum": ""
             },
             "require": {
@@ -4049,7 +4062,11 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0|~9.0"
+=======
+                "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
+>>>>>>> afbb3f9c704c1c4cfb1cac8b557d66736aa15541
             },
             "type": "library",
             "extra": {
@@ -4092,7 +4109,11 @@
                 "test double",
                 "testing"
             ],
+<<<<<<< HEAD
             "time": "2020-07-09T08:23:05+00:00"
+=======
+            "time": "2019-12-26T09:49:15+00:00"
+>>>>>>> afbb3f9c704c1c4cfb1cac8b557d66736aa15541
         },
         {
             "name": "myclabs/deep-copy",
