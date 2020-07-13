@@ -20,7 +20,7 @@ class ColorController extends Controller
             return Datatables::of($colors)
             ->addColumn('action', function($color){
                 return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$color->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$color->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+
                     <a href="#" class="btn btn-xl btn-'.($color->is_active ?"success":"danger").' active" id="'.$color->id.'"><i class="glyphicon glyphicon-active"></i> '.($color->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);

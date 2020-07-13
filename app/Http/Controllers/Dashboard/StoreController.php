@@ -7,7 +7,8 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Store;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\StoreInsert;
+use App\Http\Requests\Dashboard\StoreUpdate;
 class StoreController extends Controller
 {
     public function index(){
@@ -16,15 +17,7 @@ class StoreController extends Controller
         $branches=Branch::all();
         return view('dashboard.stores.stores',compact('stores','admins','branches'));
     }
-    public function insert(Request $request){
-        $request->validate([
-            'branch_id'=>'required',
-            'admin_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric'
-        ]);
-
+    public function insert(StoreInsert $request){
         $x=new Store;
         $x->branch_id=$request->branch_id;
         $x->admin_id=$request->admin_id;
@@ -38,15 +31,7 @@ class StoreController extends Controller
         return redirect('/dashboard/store');
     }
 
-    function update(Request $request,$id){
-        $request->validate([
-            'branch_id'=>'required',
-            'admin_id'=>'required',
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric'
-        ]);
-
+    function update(StoreUpdate $request,$id){
         $x=Store::find($request->id);
         $x->branch_id=$request->branch_id;
         $x->admin_id=$request->admin_id;

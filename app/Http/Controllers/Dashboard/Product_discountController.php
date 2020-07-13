@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Product_discount;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\ProductDicountInsert;
+use App\Http\Requests\Dashboard\ProductDicountUpdate;
 class Product_discountController extends Controller
 {
     public function index(){
@@ -16,12 +17,7 @@ class Product_discountController extends Controller
         $product_discounts=Product_discount::all();
         return view('dashboard.products.products_discounts',compact('product_discounts','products','discounts'));
     }
-    public function insert(Request $request){
-        $request->validate([
-            'product_id'=>'required',
-            'discount_id'=>'required',
-        ]);
-
+    public function insert(ProductDicountInsert $request){
         $x=new Product_discount;
         $x->product_id=$request->product_id;
         $x->discount_id=$request->discount_id;
@@ -30,11 +26,7 @@ class Product_discountController extends Controller
         return redirect('/dashboard/product_discount');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'product_id'=>'required',
-            'discount_id'=>'required',
-        ]);
+    function update(ProductDicountUpdate $request){
 
         $x=Product_discount::find($request->id);
         $x->product_id=$request->product_id;

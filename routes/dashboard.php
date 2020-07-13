@@ -16,7 +16,7 @@ Route::prefix('dashboard')->group(function(){
 
 
     // Branch Routes
-    Route::get('branches', 'BranchController@index')->name('branches');
+    Route::get('branches', 'BranchController@index')->name('branches.index');
     Route::get('branches/getdata', 'BranchController@getdata')->name('branches.getdata');
     Route::post('branches/postdata', 'BranchController@postdata')->name('branches.postdata');
     Route::get('branches/fetchdata/', 'BranchController@fetchdata')->name('branches.fetchdata');

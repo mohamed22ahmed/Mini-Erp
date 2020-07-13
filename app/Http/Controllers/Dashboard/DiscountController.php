@@ -20,7 +20,6 @@ class DiscountController extends Controller
             return Datatables::of($discounts)
             ->addColumn('action', function($discount){
                 return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$discount->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$discount->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                     <a href="#" class="btn btn-xl btn-'.($discount->is_active ?"success":"danger").' active" id="'.$discount->id.'"><i class="glyphicon glyphicon-active"></i> '.($discount->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);

@@ -12,19 +12,16 @@ use Validator;
 class BranchController extends Controller
 {
     function index(){
-        $admins=Admin::all();
-        // dd($admins);
-        return view('dashboard.basics.branches',compact('admins'));
+        $admins = Admin::all();
+        return view('dashboard.basics.branches', compact('admins'));
     }
 
     function getdata(){
         $branches = Branch::all();
-
         if(request()->ajax()){
             return Datatables::of($branches)
             ->addColumn('action', function($branch){
                 return '<a href="#" class="btn btn-sm btn-primary edit" id="'.$branch->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger delete" id="'.$branch->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                     <a href="#" class="btn btn-sm btn-'.($branch->is_active ?"success":"danger").' active" id="'.$branch->id.'"><i class="glyphicon glyphicon-active"></i> '.($branch->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);

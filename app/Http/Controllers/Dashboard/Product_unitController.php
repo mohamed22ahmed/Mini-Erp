@@ -7,7 +7,8 @@ use App\Product;
 use App\Product_unit;
 use App\Unit;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\ProductUnitInsert;
+use App\Http\Requests\Dashboard\ProductUnitUpdate;
 class Product_unitController extends Controller
 {
     public function index(){
@@ -17,13 +18,7 @@ class Product_unitController extends Controller
         return view('dashboard.products.products_units',compact('product_units','products','units'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'product_id'=>'required',
-            'unit_id'=>'required',
-            'price'=>'required|numeric'
-        ]);
-
+    public function insert(ProductUnitInsert $request){
         $x=new Product_unit;
         $x->product_id=$request->product_id;
         $x->unit_id=$request->unit_id;
@@ -33,13 +28,7 @@ class Product_unitController extends Controller
         return redirect('/dashboard/product_unit');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'product_id'=>'required',
-            'unit_id'=>'required',
-            'price'=>'required|numeric'
-        ]);
-
+    function update(ProductUnitUpdate $request){
         $x=Product_unit::find($request->id);
         $x->product_id=$request->product_id;
         $x->unit_id=$request->unit_id;

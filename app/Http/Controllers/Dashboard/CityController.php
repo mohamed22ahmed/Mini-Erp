@@ -8,7 +8,6 @@ use App\City;
 use DataTables;
 use Validator;
 
-
 class CityController extends Controller
 {
     function index(){
@@ -21,7 +20,6 @@ class CityController extends Controller
             return Datatables::of($cities)
             ->addColumn('action', function($city){
                 return '<a href="#" class="btn btn-xl btn-primary edit" id="'.$city->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-xl btn-danger delete" id="'.$city->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                     <a href="#" class="btn btn-xl btn-'.($city->is_active ?"success":"danger").' active" id="'.$city->id.'"><i class="glyphicon glyphicon-active"></i> '.($city->is_active ?"Active":"Inactive").'</a>';
             })
             ->make(true);

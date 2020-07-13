@@ -6,7 +6,8 @@ use App\Branch;
 use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Dashboard\ClientInsert;
+use App\Http\Requests\Dashboard\ClientUpdate;
 class ClientController extends Controller
 {
     public function index(){
@@ -15,15 +16,7 @@ class ClientController extends Controller
         return view('dashboard.clients_providers.client',compact('branches','clients'));
     }
 
-    public function insert(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email',
-            'client_type'=>'required'
-        ]);
+    public function insert(ClientInsert $request){
 
         $x=new Client;
         $x->branch_id=$request->branch_id;
@@ -43,15 +36,7 @@ class ClientController extends Controller
         return redirect('/dashboard/client');
     }
 
-    function update(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'branch_id'=>'required',
-            'address'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email',
-            'client_type'=>'required'
-        ]);
+    function update(ClientUpdate $request){
 
         $x=Client::find($request->id);
         $x->branch_id=$request->branch_id;
