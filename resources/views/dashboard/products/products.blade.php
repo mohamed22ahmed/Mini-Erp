@@ -46,7 +46,6 @@
                                 <td>chines phones</td>
                                 <td>
                                     <a href="ss/edit/id" class="btn btn-primary btn-sm"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger btn-sm"><i fas fa-delete></i>Delete</a>
                                     <a href="ss/active/id" class="btn btn-success btn-sm"><i fas fa-active></i>Active</a>
                                 </td>
                             </tr>
