@@ -11,10 +11,10 @@
                 <h3>Products</h3>
             </div>
             <div>
-                <button class="btn btn-success" id="add_data">
+                <a class="btn btn-success" id="add_data" style="color:white;" target="_blank" href="{{route('products.create')}}">
                     Add
                     <i class="fa fa-user-plus fa-fw"></i>
-                </button>
+                </a>
             </div>
         </div>
         <div class="row">

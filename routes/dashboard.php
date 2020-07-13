@@ -120,7 +120,11 @@ Route::prefix('dashboard')->group(function(){
 
 // ------------------------------------------ Products Routes ------------------------------------------------------
     // product Routes
-    Route::get('product','ProductController@index');
+    Route::get('product','ProductController@index')->name('products.index');
+    Route::get('product/create','ProductController@create')->name('products.create');
+    Route::get('product/edit/{id}','ProductController@edit')->name('products.edit');
+    Route::post('product/store','ProductController@store')->name('products.store');
+    Route::post('product/update/{id}','ProductController@update')->name('products.update');
 
     //product colors routes
     Route::get('product_color','Product_colorController@index');
