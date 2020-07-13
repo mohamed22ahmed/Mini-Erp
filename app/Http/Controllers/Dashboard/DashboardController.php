@@ -22,8 +22,8 @@ class DashboardController extends Controller
             'email'=>'required|email',
             'password'=>'required'
         ]);
-
-        $q=Admin::where(['email'=>$request->email,'password'=>$request->password])->first();
+        $pass=bcrypt($request->password);
+        $q=Admin::where(['email'=>$request->email,'password'=>$pass])->first();
         if($q){
             session()->put('id',$q->id);
             session()->put('username',$q->username);
@@ -78,7 +78,9 @@ class DashboardController extends Controller
         ]);
         if(session('forget_email')){
             $admin=Admin::where('email',session('forget_email'))->first();
-            $admin->password=$request->password;
+            $pass=bcrypt($request->password);
+            $admin->password=$pass;
+            $admin->save();
         }
         return redirect('/dashboard/login');
     }

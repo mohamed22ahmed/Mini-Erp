@@ -27,7 +27,8 @@ class AdminController extends Controller
         $x=new Admin;
         // $x->branch_id=$request->branch_id;
         $x->username=$request->name;
-        $x->password=$request->password;
+        $pass=bcrypt($request->password);
+        $x->password=$pass;
         $x->email=$request->email;
         $x->super_admin=$request->admin_type;
         $x->save();
@@ -48,8 +49,10 @@ class AdminController extends Controller
         $x=Admin::find($request->id);
         // $x->branch_id=$request->branch_id;
         $x->username=$request->name;
-        if($request->password)
-            $x->password=$request->password;
+        if($request->password){
+            $pass=bcrypt($request->password);
+            $x->password=$pass;
+        }
         $x->email=$request->email;
         $x->super_admin=$request->admin_type;
         $x->save();
