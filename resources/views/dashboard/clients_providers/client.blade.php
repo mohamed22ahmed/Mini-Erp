@@ -46,7 +46,6 @@
                                             class="btn btn-primary edit-client-button ">
                                             <i fas fa-edit></i>Edit
                                         </a>
-                                        <a href="client/delete/{{ $client->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
                                         <a href="client/active/{{ $client->id }}" class="btn btn-{{ $client->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $client->is_active=='1'?'Active':'Inactive'}}</a>
                                     </td>
                                 </tr>

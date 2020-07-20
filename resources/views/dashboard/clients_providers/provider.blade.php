@@ -44,8 +44,7 @@
                                             class="btn btn-primary edit-client-button ">
                                             <i fas fa-edit></i>Edit
                                         </a>
-                                        <a href="provider/delete/{{ $provider->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                        <a href="provider/active/{{ $provider->id }}" class="btn btn-{{ $provider->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $provider->is_active=='1'?'Active':'Inactive'}}</a>
+                                         <a href="provider/active/{{ $provider->id }}" class="btn btn-{{ $provider->is_active=='1'?'success':'danger'}}"><i fas fa-active></i>{{ $provider->is_active=='1'?'Active':'Inactive'}}</a>
                                     </td>
                                 </tr>
                             @endforeach

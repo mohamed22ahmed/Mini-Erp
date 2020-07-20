@@ -47,8 +47,7 @@
                                             class="btn btn-primary edit-rec-company-button">
                                             <i fas fa-edit></i>Edit
                                         </a>
-                                        <a href="/dashboard/recharge_company/delete/{{ $rec->id }}" class="btn btn-danger"><i fas fa-delete></i>Delete</a>
-                                        <a href="/dashboard/recharge_company/active/{{ $rec->id }}" class="btn {{ $rec->is_active==1?'btn-success':'btn-danger' }}"><i fas fa-active></i>{{ $rec->is_active==1?'Active':'Inactive' }}</a>
+                                         <a href="/dashboard/recharge_company/active/{{ $rec->id }}" class="btn {{ $rec->is_active==1?'btn-success':'btn-danger' }}"><i fas fa-active></i>{{ $rec->is_active==1?'Active':'Inactive' }}</a>
                                     </td>
                                 </tr>
                             @endforeach

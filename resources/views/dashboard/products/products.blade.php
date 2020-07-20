@@ -11,10 +11,10 @@
                 <h3>Products</h3>
             </div>
             <div>
-                <button class="btn btn-success" id="add_data">
+                <a class="btn btn-success" id="add_data" style="color:white;" target="_blank" href="{{route('products.create')}}">
                     Add
                     <i class="fa fa-user-plus fa-fw"></i>
-                </button>
+                </a>
             </div>
         </div>
         <div class="row">
@@ -46,7 +46,6 @@
                                 <td>chines phones</td>
                                 <td>
                                     <a href="ss/edit/id" class="btn btn-primary btn-sm"><i fas fa-edit></i>Edit</a>
-                                    <a href="ss/delete/id" class="btn btn-danger btn-sm"><i fas fa-delete></i>Delete</a>
                                     <a href="ss/active/id" class="btn btn-success btn-sm"><i fas fa-active></i>Active</a>
                                 </td>
                             </tr>

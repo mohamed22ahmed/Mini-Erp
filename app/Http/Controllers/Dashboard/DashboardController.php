@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
 use App\Admin;
-
+use App\Http\Requests\Dashboard\LoginRequest;
 class DashboardController extends Controller
 {
 
@@ -17,13 +17,10 @@ class DashboardController extends Controller
         return redirect('dashboard/');
     }
 
-    public function loggedin(Request $request){
-        $request->validate([
-            'email'=>'required|email',
-            'password'=>'required'
-        ]);
-        $pass=bcrypt($request->password);
-        $q=Admin::where(['email'=>$request->email,'password'=>$pass])->first();
+    public function loggedin(LoginRequest $request){
+        $pass = bcrypt($request->password);
+
+        $q = Admin::where(['email'=>$request->email,'password'=>$pass])->first();
         if($q){
             session()->put('id',$q->id);
             session()->put('username',$q->username);
