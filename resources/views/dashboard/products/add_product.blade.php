@@ -116,7 +116,7 @@
                                                             value="{{old('current_amount')}}"
                                                             class="form-control"
                                                             placeholder="Current Amount"
-                                                            name="current_amount"  >
+                                                            name="current_amount" >
                                                 </div>
                                                 @if($errors->has('current_amount'))
                                                     <span class="text-danger">{{ $errors->first('current_amount') }}
