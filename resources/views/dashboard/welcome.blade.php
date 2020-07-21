@@ -60,10 +60,10 @@
                         <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog "></i> @lang('dashboard.settings')</a></li>
                         <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user"></i> @lang('dashboard.profile')</a></li>
                         <li>
-                            <a class="dropdown-item" href="/logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i>
                                 @lang('dashboard.logout')
-                                <form id="logout-form" action="/logout" method="POST" style="...">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="...">
                                     @csrf
                                 </form>
                             </a>
@@ -77,7 +77,7 @@
             <div class="app-sidebar__user">
                 <div>
                 <p class="app-sidebar__user-designation">@lang('dashboard.welcome')</p><br>
-                <p class="app-sidebar__user-name" style="font-size:22px">{{  Session::get('username') }}</p>
+                <p class="app-sidebar__user-name" style="font-size:22px">{{  Auth::user()->username }}</p>
                 </div>
             </div>
             <ul class="app-menu">
@@ -155,7 +155,7 @@
                         <div class="pt-md-5 mt-md-3">
                     @endif
                             <div class="text-center mb-5" ></div>
-                            <div>Mohamed Ahmed</div>
+                            <div>{{Auth::user()->username}}</div>
                         </div>
                     </div>
                 </div>
