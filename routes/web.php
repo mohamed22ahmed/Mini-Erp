@@ -17,11 +17,12 @@ Route::get('/', function () {
 
 Route::get('/lang/{lang}', 'LangController@index');
 
-Route::get('ajaxdata', 'StudentController@index')->name('ajaxdata');
-Route::get('ajaxdata/getdata', 'StudentController@getdata')->name('ajaxdata.getdata');
+// Route::get('ajaxdata', 'StudentController@index')->name('ajaxdata');
+// Route::get('ajaxdata/getdata', 'StudentController@getdata')->name('ajaxdata.getdata');
 
-Route::post('ajaxdata/postdata', 'StudentController@postdata')->name('ajaxdata.postdata');
+// Route::post('ajaxdata/postdata', 'StudentController@postdata')->name('ajaxdata.postdata');
 
-Route::get('ajaxdata/fetchdata/', 'StudentController@fetchdata')->name('ajaxdata.fetchdata');
-
-Route::get('ajaxdata/removedata', 'StudentController@removedata')->name('ajaxdata.removedata');
+// Route::get('ajaxdata/fetchdata/', 'StudentController@fetchdata')->name('ajaxdata.fetchdata');
+Auth::routes();
+// Route::get('logout', 'Auth\LoginController@logout');
+Route::get('/home', 'HomeController@index')->name('home');
