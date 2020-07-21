@@ -41,7 +41,7 @@
                                     <p>Login into your pages account</p>
                                 </div>
                                 <div class="card-box-form">
-                                    <form action="" method="post">
+                                    <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control input" name="email" placeholder="Email" required>

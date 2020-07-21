@@ -78,7 +78,7 @@
             <div class="app-sidebar__user">
                 <div>
                 <p class="app-sidebar__user-designation">@lang('dashboard.welcome')</p><br>
-                <p class="app-sidebar__user-name" style="font-size:22px">{{  Session::get('username') }}</p>
+                <p class="app-sidebar__user-name" style="font-size:22px">{{  Auth::user()->username }}</p>
                 </div>
             </div>
             <ul class="app-menu">
